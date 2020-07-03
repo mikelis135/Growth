@@ -2,13 +2,12 @@ package com.mindvalley.personalgrowth.ui.main
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.mindvalley.personalgrowth.App
-import com.mindvalley.personalgrowth.MainActivity
 import com.mindvalley.personalgrowth.R
 import kotlinx.android.synthetic.main.main_fragment.*
 import javax.inject.Inject
@@ -38,8 +37,22 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-         viewModel.name.observe(this, Observer {
-             message.text = it
+        viewModel.saveCategories()
+
+        viewModel.name.observe(this, Observer {
+
+        })
+
+        viewModel.channelCategories.observe(this, Observer {
+
+            it?.let {
+                message.text = it.data.categories[1].name
+                var names = ""
+                it.data.categories.forEach {
+                    names = names + it.name + " "
+                }
+                message.text = names
+            }
         })
     }
 

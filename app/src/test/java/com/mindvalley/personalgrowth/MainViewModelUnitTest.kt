@@ -7,7 +7,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class ExampleUnitTest {
+class MainViewModelUnitTest {
 
     @Rule
     @get:Rule @JvmField  var testRule = InstantTaskExecutorRule()
@@ -17,11 +17,6 @@ class ExampleUnitTest {
     @Before
     fun setUp() {
        viewModel = MainViewModel()
-    }
-
-    @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
     }
 
     @Test

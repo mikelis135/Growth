@@ -7,7 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import org.junit.Test
 
-class ApplicationTest {
+class MainFragmentTest {
 
     @Test
     fun runApp(){

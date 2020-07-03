@@ -46,10 +46,18 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
-    //Dependency injection
+    //Local Database
+    implementation "androidx.room:room-runtime:2.2.5"
+    implementation "androidx.room:room-ktx:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
 
+    //Dependency injection
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.5'
+
 
     //Unit and UI Testing
     testImplementation 'junit:junit:4.12'
