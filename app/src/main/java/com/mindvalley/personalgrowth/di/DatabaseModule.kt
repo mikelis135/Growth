@@ -2,8 +2,10 @@ package com.mindvalley.personalgrowth.di
 
 import android.app.Application
 import androidx.room.Room
-import com.mindvalley.personalgrowth.model.AppDatabase
-import com.mindvalley.personalgrowth.model.ChannelCategoriesDAO
+import com.mindvalley.personalgrowth.local.AppDatabase
+import com.mindvalley.personalgrowth.local.dao.ChannelCategoriesDAO
+import com.mindvalley.personalgrowth.local.dao.ChannelsDAO
+import com.mindvalley.personalgrowth.local.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,6 +17,18 @@ class DatabaseModule(private val application: Application) {
     @Provides
     fun providesChannelCategoriesDao(appDatabase: AppDatabase): ChannelCategoriesDAO {
         return appDatabase.channelCategoriesDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesNewEpisodesDao(appDatabase: AppDatabase): NewEpisodesDAO {
+        return appDatabase.newEpisodesDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesChannelsDAO(appDatabase: AppDatabase): ChannelsDAO {
+        return appDatabase.channelsDao()
     }
 
     @Singleton

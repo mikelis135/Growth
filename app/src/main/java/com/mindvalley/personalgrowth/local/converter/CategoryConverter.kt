@@ -1,8 +1,9 @@
-package com.mindvalley.personalgrowth.model
+package com.mindvalley.personalgrowth.local.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.mindvalley.personalgrowth.local.entity.Category
 
 class CategoryConverter {
 

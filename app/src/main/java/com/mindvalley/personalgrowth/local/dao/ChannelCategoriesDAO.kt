@@ -1,7 +1,8 @@
-package com.mindvalley.personalgrowth.model
+package com.mindvalley.personalgrowth.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.mindvalley.personalgrowth.local.entity.ChannelCategory
 
 @Dao
 interface ChannelCategoriesDAO {

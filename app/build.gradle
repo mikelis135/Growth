@@ -55,9 +55,13 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    //GSON
+    //Serialization
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    //Networking
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.0.0"
 
     //Unit and UI Testing
     testImplementation 'junit:junit:4.12'

@@ -37,19 +37,17 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.saveCategories()
-
         viewModel.name.observe(this, Observer {
 
         })
 
-        viewModel.channelCategories.observe(this, Observer {
+        viewModel.channels.observe(this, Observer {
 
             it?.let {
-                message.text = it.data.categories[1].name
+                message.text = it.data?.channels?.get(1)?.title
                 var names = ""
-                it.data.categories.forEach {
-                    names = names + it.name + " "
+                it.data?.channels?.forEach {
+                    names = names + it.title + " "
                 }
                 message.text = names
             }

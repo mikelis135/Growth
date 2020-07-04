@@ -1,4 +1,4 @@
-package com.mindvalley.personalgrowth.model
+package com.mindvalley.personalgrowth.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,13 +7,13 @@ import androidx.room.PrimaryKey
 class ChannelCategory(
     @PrimaryKey
     val id : Int = 0,
-    val data: Category
+    val data: Category?
 )
 
 data class Category(
-    val categories: List<CategoryNames>
+    val categories: List<CategoryNames>?
 )
 
 data class CategoryNames(
-    val name: String
+    val name: String = ""
 )

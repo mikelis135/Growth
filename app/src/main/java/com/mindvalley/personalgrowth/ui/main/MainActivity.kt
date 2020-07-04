@@ -1,8 +1,8 @@
-package com.mindvalley.personalgrowth
+package com.mindvalley.personalgrowth.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mindvalley.personalgrowth.ui.main.MainFragment
+import com.mindvalley.personalgrowth.R
 
 class MainActivity : AppCompatActivity() {
 

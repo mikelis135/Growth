@@ -1,0 +1,20 @@
+package com.mindvalley.personalgrowth.remote
+
+import com.mindvalley.personalgrowth.model.ChannelCategoryResponse
+import com.mindvalley.personalgrowth.model.ChannelsResponse
+import com.mindvalley.personalgrowth.model.NewEpisodesResponse
+import retrofit2.Call
+import retrofit2.http.GET
+
+interface ApiService {
+
+    @GET("raw/A0CgArX3")
+    fun getChannelsCategories(): Call<ChannelCategoryResponse>
+
+    @GET("raw/z5AExTtw")
+    fun getNewEpisodes(): Call<NewEpisodesResponse>
+
+    @GET("raw/Xt12uVhM")
+    fun getChannels(): Call<ChannelsResponse>
+
+}
