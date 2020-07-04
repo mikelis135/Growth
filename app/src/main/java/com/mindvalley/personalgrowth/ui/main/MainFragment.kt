@@ -44,12 +44,12 @@ class MainFragment : Fragment() {
         viewModel.channels.observe(this, Observer {
 
             it?.let {
-                message.text = it.data?.channels?.get(1)?.title
-                var names = ""
-                it.data?.channels?.forEach {
-                    names = names + it.title + " "
-                }
-                message.text = names
+//                message.text = it.data?.channels?.get(1)?.title
+//                var names = ""
+//                it.data?.channels?.forEach {
+//                    names = names + it.title + " "
+//                }
+//                message.text = names
             }
         })
     }
