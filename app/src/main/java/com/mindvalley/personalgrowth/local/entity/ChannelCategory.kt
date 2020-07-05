@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "category_table")
 class ChannelCategory(
     @PrimaryKey
-    val id : Int = 0,
+    val id: Int = 0,
     val data: Category?
 )
 

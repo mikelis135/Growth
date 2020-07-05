@@ -81,7 +81,8 @@ class ChannelAdapter(
 
         fun bind(channelItem: ChannelItem, context: Context) {
             channelTitle.text = channelItem.title
-            channelCountTitle.text = context.getString(R.string.episodes, channelItem.latestMedia?.size)
+            channelCountTitle.text =
+                context.getString(R.string.episodes, channelItem.latestMedia?.size)
 
             Glide.with(context).load(channelItem.iconAsset?.thumbnailUrl)
                 .placeholder(R.drawable.ic_placeholder)

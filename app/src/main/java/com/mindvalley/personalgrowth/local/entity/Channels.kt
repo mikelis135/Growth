@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "channels_table")
 class Channels(
     @PrimaryKey
-    val id : Int = 0,
+    val id: Int = 0,
     val data: AllChannels?
 )
 

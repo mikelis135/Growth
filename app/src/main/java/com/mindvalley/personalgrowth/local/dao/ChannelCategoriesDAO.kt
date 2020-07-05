@@ -14,6 +14,6 @@ interface ChannelCategoriesDAO {
     suspend fun updateCategories(channelCategory: ChannelCategory)
 
     @Query("select * from category_table")
-    fun getCategories() : LiveData<ChannelCategory>
+    fun getCategories(): LiveData<ChannelCategory>
 
 }

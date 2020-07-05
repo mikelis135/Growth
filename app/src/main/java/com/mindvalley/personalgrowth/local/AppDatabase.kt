@@ -11,8 +11,18 @@ import com.mindvalley.personalgrowth.local.entity.ChannelCategory
 import com.mindvalley.personalgrowth.local.entity.Channels
 import com.mindvalley.personalgrowth.local.entity.NewEpisodes
 
-@Database(entities = [ChannelCategory::class, NewEpisodes::class, Channels::class], version = 8, exportSchema = false)
-@TypeConverters(CategoryConverter::class, CourseConverter::class, MediaConverter::class, ChannelItemConverter::class, AllChannelsConverter::class)
+@Database(
+    entities = [ChannelCategory::class, NewEpisodes::class, Channels::class],
+    version = 8,
+    exportSchema = false
+)
+@TypeConverters(
+    CategoryConverter::class,
+    CourseConverter::class,
+    MediaConverter::class,
+    ChannelItemConverter::class,
+    AllChannelsConverter::class
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun channelsDao(): ChannelsDAO

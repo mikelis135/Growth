@@ -9,5 +9,5 @@ import javax.inject.Singleton
 @Component(modules = [DatabaseModule::class, RemoteModule::class])
 interface AppComponent {
     fun inject(fragment: MainFragment)
-    fun gson() : Gson
+    fun gson(): Gson
 }

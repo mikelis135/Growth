@@ -45,11 +45,13 @@ class ChannelCourseAdapter(
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val channelCourseTitle: TextView = itemView.channelCourseMediaTitleTxt
         private val channelCourseImage: ImageView = itemView.channelCourseMediaPhotoImg
-        private val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).override(500, 500)
+        private val requestOptions =
+            RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL).override(500, 500)
 
         fun bind(channelMedia: ChannelMedia, context: Context) {
             channelCourseTitle.text = channelMedia.title
-            Glide.with(context).load(channelMedia.coverAsset?.url).apply(requestOptions).into(channelCourseImage)
+            Glide.with(context).load(channelMedia.coverAsset?.url).apply(requestOptions)
+                .into(channelCourseImage)
 
         }
     }

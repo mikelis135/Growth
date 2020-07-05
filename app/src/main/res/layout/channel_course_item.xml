@@ -33,6 +33,6 @@
         app:layout_constraintEnd_toEndOf="@id/channelCard"
         app:layout_constraintStart_toStartOf="@id/channelCard"
         app:layout_constraintTop_toBottomOf="@id/channelCard"
-        tools:text="The Cure For Loneliness" />
+        tools:text="@string/loneliness" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
