@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     tools:background="@color/colorPrimary"
-    android:paddingEnd="12dp">
+    android:paddingEnd="@dimen/episodePaddingEnd">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardPhoto"
-        android:layout_width="152dp"
-        android:layout_height="228dp"
+        android:id="@+id/episodeCardPhoto"
+        android:layout_width="@dimen/episodeCardWidth"
+        android:layout_height="@dimen/episodeCardHeight"
         app:cardCornerRadius="8dp">
 
         <ImageView
@@ -30,10 +30,10 @@
         android:letterSpacing="0.04"
         tools:text="The Cure For Loneliness"
         android:textColor="@color/colorWhite"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@id/cardPhoto"
-        app:layout_constraintStart_toStartOf="@id/cardPhoto"
-        app:layout_constraintTop_toBottomOf="@id/cardPhoto" />
+        android:textSize="@dimen/channelSize"
+        app:layout_constraintEnd_toEndOf="@id/episodeCardPhoto"
+        app:layout_constraintStart_toStartOf="@id/episodeCardPhoto"
+        app:layout_constraintTop_toBottomOf="@id/episodeCardPhoto" />
 
     <TextView
         android:id="@+id/courseTitleTxt"
@@ -45,9 +45,9 @@
         tools:text="Mindvalley Mentoring"
         android:textAllCaps="true"
         android:textColor="@color/colorSubTitle"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@id/cardPhoto"
-        app:layout_constraintStart_toStartOf="@id/cardPhoto"
+        android:textSize="@dimen/courseSize"
+        app:layout_constraintEnd_toEndOf="@id/episodeCardPhoto"
+        app:layout_constraintStart_toStartOf="@id/episodeCardPhoto"
         app:layout_constraintTop_toBottomOf="@id/channelTitleTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

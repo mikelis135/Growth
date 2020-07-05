@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingEnd="12dp"
+    android:paddingEnd="@dimen/episodePaddingEnd"
     tools:background="@color/colorPrimary">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/channelCard"
-        android:layout_width="319dp"
-        android:layout_height="172dp"
+        android:layout_width="@dimen/seriesWidth"
+        android:layout_height="@dimen/seriesHeight"
         app:cardCornerRadius="8dp">
 
         <ImageView
@@ -29,7 +29,7 @@
         android:layout_marginTop="10dp"
         android:letterSpacing="0.04"
         android:textColor="@color/colorWhite"
-        android:textSize="17sp"
+        android:textSize="@dimen/channelMediaTitleSize"
         app:layout_constraintEnd_toEndOf="@id/channelCard"
         app:layout_constraintStart_toStartOf="@id/channelCard"
         app:layout_constraintTop_toBottomOf="@id/channelCard"

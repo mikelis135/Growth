@@ -20,15 +20,15 @@
         android:id="@+id/channelCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/channelTitleMarginTop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider"
         app:cardCornerRadius="25dp">
 
         <ImageView
             android:id="@+id/channelCoursePhotoImg"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="@dimen/channelPhotoWidth"
+            android:layout_height="@dimen/channelPhotoHeight"
             tools:src="@drawable/image4"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="@+id/background"
@@ -46,7 +46,7 @@
         android:layout_marginStart="14dp"
         tools:text="Mindvalley Mentoring"
         android:textColor="@color/colorWhite"
-        android:textSize="20sp"
+        android:textSize="@dimen/channelItemSize"
         app:layout_constraintBottom_toTopOf="@id/channelCourseItemCountTxt"
         app:layout_constraintStart_toEndOf="@id/channelCard" />
 
@@ -57,7 +57,7 @@
         android:layout_marginStart="14dp"
         tools:text="78 episodes"
         android:textColor="@color/colorSubTitle"
-        android:textSize="16sp"
+        android:textSize="@dimen/channelItemCountSize"
         app:layout_constraintBottom_toBottomOf="@id/channelCard"
         app:layout_constraintStart_toEndOf="@id/channelCard" />
 

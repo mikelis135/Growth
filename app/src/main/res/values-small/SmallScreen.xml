@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="channelSize">14sp</dimen>
+    <dimen name="courseSize">12sp</dimen>
+    <dimen name="channelTitleSize">24sp</dimen>
+    <dimen name="newEpisodesSize">16sp</dimen>
+    <dimen name="episodeCardWidth">83dp</dimen>
+    <dimen name="episodeCardHeight">120dp</dimen>
+    <dimen name="channelTitleMarginTop">25dp</dimen>
+    <dimen name="channelPhotoHeight">35dp</dimen>
+    <dimen name="channelPhotoWidth">35dp</dimen>
+    <dimen name="channelItemSize">14sp</dimen>
+    <dimen name="channelItemCountSize">12sp</dimen>
+    <dimen name="channelMediaTitleSize">14sp</dimen>
+    <dimen name="channelPadding">16dp</dimen>
+</resources>

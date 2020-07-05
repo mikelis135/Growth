@@ -2,6 +2,7 @@ package com.mindvalley.personalgrowth.ui.main
 
 import android.content.Context
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mindvalley.personalgrowth.App
 import com.mindvalley.personalgrowth.R
+import com.mindvalley.personalgrowth.screen.PhoneScreen
+import com.mindvalley.personalgrowth.screen.ScreenSize
 import com.mindvalley.personalgrowth.ui.adapter.CategoriesAdapter
 import com.mindvalley.personalgrowth.ui.adapter.ChannelAdapter
 import com.mindvalley.personalgrowth.ui.adapter.NewEpisodesAdapter
@@ -47,11 +50,12 @@ class MainFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         rootView.channelRcl.layoutManager =
             LinearLayoutManager(requireContext())
-//        rootView.categoryRcl.layoutManager =
-//            LinearLayoutManager(requireContext())
 
         return rootView
     }
+
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

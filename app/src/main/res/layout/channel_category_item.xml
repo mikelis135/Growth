@@ -9,11 +9,11 @@
     tools:background="@color/colorPrimary">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardPhoto"
-        android:layout_width="160dp"
-        android:layout_height="60dp"
+        android:id="@+id/episodeCardPhoto"
+        android:layout_width="@dimen/categoryWidth"
+        android:layout_height="@dimen/categoryHeight"
         app:cardBackgroundColor="@color/colorGrey"
-        app:cardCornerRadius="35dp"
+        app:cardCornerRadius="@dimen/categoryCornerRadius"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,7 +30,7 @@
             android:paddingEnd="15dp"
             android:paddingBottom="10dp"
             android:textColor="@color/colorWhite"
-            android:textSize="18sp"
+            android:textSize="@dimen/channelItemCountSize"
             tools:text="Health &amp; Fitness" />
 
     </androidx.cardview.widget.CardView>

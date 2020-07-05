@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:padding="20dp"
+    android:padding="@dimen/channelPadding"
     tools:context=".ui.main.MainFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,11 +17,11 @@
             android:id="@+id/channelsTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="@dimen/channelTitleMarginTop"
             android:letterSpacing="0.05"
             android:text="Channels"
             android:textColor="@color/colorTitle"
-            android:textSize="30sp"
+            android:textSize="@dimen/channelTitleSize"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,8 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="New Episodes"
+            android:textStyle="bold"
             android:textColor="@color/colorSubTitle"
-            android:textSize="20sp"
+            android:textSize="@dimen/newEpisodesSize"
             app:layout_constraintStart_toStartOf="@id/channelsTxt"
             app:layout_constraintTop_toBottomOf="@id/channelsTxt" />
 
@@ -43,8 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/newEpisodesTxt"
             tools:listitem="@layout/new_episodes_item" />
 
@@ -54,8 +55,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="3"
             app:layout_constraintTop_toBottomOf="@id/newEpisodesRcl"
+            tools:itemCount="3"
             tools:listitem="@layout/channel_series_list" />
 
         <TextView
@@ -65,7 +66,7 @@
             android:layout_marginTop="30dp"
             android:text="Browse by categories"
             android:textColor="@color/colorSubTitle"
-            android:textSize="20sp"
+            android:textSize="@dimen/channelMediaTitleSize"
             app:layout_constraintStart_toStartOf="@id/channelsTxt"
             app:layout_constraintTop_toBottomOf="@id/channelRcl" />
 
@@ -75,8 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
             app:layout_constraintTop_toBottomOf="@id/browseCategoryTxt"
+            app:spanCount="2"
             tools:listitem="@layout/channel_category_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
