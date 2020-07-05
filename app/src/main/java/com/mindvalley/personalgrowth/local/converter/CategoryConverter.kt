@@ -7,9 +7,10 @@ import com.mindvalley.personalgrowth.local.entity.Category
 
 class CategoryConverter {
 
+    val gson = Gson()
+
     @TypeConverter
     fun fromCategory(category: Category): String {
-        val gson = Gson()
         val type = object : TypeToken<Category>() {
 
         }.type
@@ -18,7 +19,6 @@ class CategoryConverter {
 
     @TypeConverter
     fun toCategory(categoryString: String): Category {
-        val gson = Gson()
         val type = object : TypeToken<Category>() {
 
         }.type

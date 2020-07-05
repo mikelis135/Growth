@@ -26,7 +26,6 @@ class MainRepository @Inject constructor(
         } else {
             channelCategoriesDAO.updateCategories(channelCategory)
         }
-
     }
 
     suspend fun saveNewEpisodes(newEpisode: NewEpisodes) {

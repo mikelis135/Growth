@@ -7,9 +7,10 @@ import com.mindvalley.personalgrowth.local.entity.Course
 
 class CourseConverter {
 
+    val gson = Gson()
+
     @TypeConverter
     fun fromCourse(course: Course): String {
-        val gson = Gson()
         val type = object : TypeToken<Course>() {
 
         }.type
@@ -18,7 +19,6 @@ class CourseConverter {
 
     @TypeConverter
     fun toCourse(courseString: String): Course {
-        val gson = Gson()
         val type = object : TypeToken<Course>() {
 
         }.type

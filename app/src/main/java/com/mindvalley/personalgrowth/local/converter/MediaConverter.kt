@@ -7,9 +7,10 @@ import com.mindvalley.personalgrowth.local.entity.Media
 
 class MediaConverter {
 
+    val gson = Gson()
+
     @TypeConverter
     fun fromMedia(media: Media): String {
-        val gson = Gson()
         val type = object : TypeToken<Media>() {
 
         }.type
@@ -18,7 +19,6 @@ class MediaConverter {
 
     @TypeConverter
     fun toMedia(mediaString: String): Media {
-        val gson = Gson()
         val type = object : TypeToken<Media>() {
 
         }.type

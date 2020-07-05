@@ -5,11 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mindvalley.personalgrowth.App
 import com.mindvalley.personalgrowth.R
-import kotlinx.android.synthetic.main.main_fragment.*
+import com.mindvalley.personalgrowth.ui.adapter.CategoriesAdapter
+import com.mindvalley.personalgrowth.ui.adapter.ChannelAdapter
+import com.mindvalley.personalgrowth.ui.adapter.NewEpisodesAdapter
+import kotlinx.android.synthetic.main.main_fragment.view.*
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -20,6 +26,10 @@ class MainFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: MainViewModel
+    lateinit var newEpisodesAdapter: NewEpisodesAdapter
+    lateinit var channelAdapter: ChannelAdapter
+    lateinit var categoriesAdapter: CategoriesAdapter
+    lateinit var rootView: View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -31,7 +41,16 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        rootView = inflater.inflate(R.layout.main_fragment, container, false)
+
+        rootView.newEpisodesRcl.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        rootView.channelRcl.layoutManager =
+            LinearLayoutManager(requireContext())
+//        rootView.categoryRcl.layoutManager =
+//            LinearLayoutManager(requireContext())
+
+        return rootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -41,15 +60,33 @@ class MainFragment : Fragment() {
 
         })
 
+        viewModel.newEpisodes.observe(this, Observer {
+            it?.data?.media?.let {
+
+                newEpisodesAdapter = NewEpisodesAdapter(requireContext(), it)
+                rootView.newEpisodesRcl.adapter = newEpisodesAdapter
+
+            }
+        })
+
         viewModel.channels.observe(this, Observer {
 
-            it?.let {
-//                message.text = it.data?.channels?.get(1)?.title
-//                var names = ""
-//                it.data?.channels?.forEach {
-//                    names = names + it.title + " "
-//                }
-//                message.text = names
+            it?.data?.channels?.let {
+
+                channelAdapter = ChannelAdapter(requireContext(), it)
+                rootView.channelRcl.adapter = channelAdapter
+
+            }
+        })
+
+
+        viewModel.channelCategories.observe(this, Observer {
+
+            it?.data?.categories?.let {
+
+                categoriesAdapter = CategoriesAdapter(requireContext(), it)
+                rootView.categoryRcl.adapter = categoriesAdapter
+
             }
         })
     }

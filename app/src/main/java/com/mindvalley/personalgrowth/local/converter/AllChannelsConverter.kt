@@ -7,9 +7,12 @@ import com.mindvalley.personalgrowth.local.entity.AllChannels
 
 class AllChannelsConverter {
 
+    val gson = Gson()
+
     @TypeConverter
     fun fromAllChannels(allChannels: AllChannels): String {
-        val gson = Gson()
+
+
         val type = object : TypeToken<AllChannels>() {
 
         }.type
@@ -18,7 +21,6 @@ class AllChannelsConverter {
 
     @TypeConverter
     fun toAllChannels(allChannelsString: String): AllChannels {
-        val gson = Gson()
         val type = object : TypeToken<AllChannels>() {
 
         }.type

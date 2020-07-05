@@ -7,4 +7,5 @@
     <color name="colorSubTitle">#95989D</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorGrey">#66958E9D</color>
+    <color name="colorDivider">#3C434E</color>
 </resources>

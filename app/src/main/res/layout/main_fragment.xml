@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        
+
         <TextView
             android:id="@+id/channelsTxt"
             android:layout_width="wrap_content"
@@ -26,12 +26,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/newEpisodesTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="New Episodes"
+            android:textColor="@color/colorSubTitle"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/channelsTxt"
+            app:layout_constraintTop_toBottomOf="@id/channelsTxt" />
+
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newEpisodesRcl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            tools:listitem="@layout/channel_item_list"
-            app:layout_constraintTop_toBottomOf="@id/channelsTxt"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/newEpisodesTxt"
+            tools:listitem="@layout/new_episodes_item" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/channelRcl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            app:layout_constraintTop_toBottomOf="@id/newEpisodesRcl"
+            tools:listitem="@layout/channel_series_list" />
+
+        <TextView
+            android:id="@+id/browseCategoryTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Browse by categories"
+            android:textColor="@color/colorSubTitle"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/channelsTxt"
+            app:layout_constraintTop_toBottomOf="@id/channelRcl" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRcl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            app:layout_constraintTop_toBottomOf="@id/browseCategoryTxt"
+            tools:listitem="@layout/channel_category_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

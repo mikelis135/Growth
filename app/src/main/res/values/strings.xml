@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Personal Growth</string>
+    <string name="series"> %1$s series</string>
+    <string name="episodes"> %1$s episodes</string>
 </resources>

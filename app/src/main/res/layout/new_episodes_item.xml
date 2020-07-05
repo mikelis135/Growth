@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/colorPrimary"
     android:paddingEnd="12dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/coursePhotoImg"
+        android:id="@+id/cardPhoto"
         android:layout_width="152dp"
         android:layout_height="228dp"
         app:cardCornerRadius="8dp">
 
         <ImageView
+            android:id="@+id/episodePhotoImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -26,12 +28,12 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
         android:letterSpacing="0.04"
-        android:text="The Cure For Loneliness"
+        tools:text="The Cure For Loneliness"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@id/coursePhotoImg"
-        app:layout_constraintStart_toStartOf="@id/coursePhotoImg"
-        app:layout_constraintTop_toBottomOf="@id/coursePhotoImg" />
+        app:layout_constraintEnd_toEndOf="@id/cardPhoto"
+        app:layout_constraintStart_toStartOf="@id/cardPhoto"
+        app:layout_constraintTop_toBottomOf="@id/cardPhoto" />
 
     <TextView
         android:id="@+id/courseTitleTxt"
@@ -40,12 +42,12 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
         android:letterSpacing="0.1"
-        android:text="Mindvalley Mentoring"
+        tools:text="Mindvalley Mentoring"
         android:textAllCaps="true"
         android:textColor="@color/colorSubTitle"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@id/coursePhotoImg"
-        app:layout_constraintStart_toStartOf="@id/coursePhotoImg"
+        app:layout_constraintEnd_toEndOf="@id/cardPhoto"
+        app:layout_constraintStart_toStartOf="@id/cardPhoto"
         app:layout_constraintTop_toBottomOf="@id/channelTitleTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package com.mindvalley.personalgrowth.di
 
 import android.app.Application
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.mindvalley.personalgrowth.local.AppDatabase
 import com.mindvalley.personalgrowth.local.dao.ChannelCategoriesDAO
 import com.mindvalley.personalgrowth.local.dao.ChannelsDAO
@@ -23,6 +25,12 @@ class DatabaseModule(private val application: Application) {
     @Provides
     fun providesNewEpisodesDao(appDatabase: AppDatabase): NewEpisodesDAO {
         return appDatabase.newEpisodesDao()
+    }
+
+    @Provides
+    @Singleton
+    fun providesRequestManager(): RequestManager {
+        return Glide.with(application.applicationContext)
     }
 
     @Singleton

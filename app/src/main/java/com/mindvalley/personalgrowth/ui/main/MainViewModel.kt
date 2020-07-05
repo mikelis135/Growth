@@ -26,8 +26,8 @@ class MainViewModel @Inject constructor(
     var channels: LiveData<Channels> = mainRepository.channels
 
     init {
-//        saveCategories()
-//        saveNewEpisodes()
+        saveCategories()
+        saveNewEpisodes()
         saveChannels()
     }
 
@@ -50,6 +50,7 @@ class MainViewModel @Inject constructor(
             })
         }
 
+        channelCategories = mainRepository.channelCategories
     }
 
     private fun saveNewEpisodes() {
@@ -68,7 +69,9 @@ class MainViewModel @Inject constructor(
             }, {
                 Log.d("okh", it)
             })
+            newEpisodes = mainRepository.newEpisodes
         }
+
     }
 
     private fun saveChannels() {
@@ -87,7 +90,9 @@ class MainViewModel @Inject constructor(
             }, {
                 Log.d("okh", it)
             })
+            channels = mainRepository.channels
         }
+
     }
 
 }

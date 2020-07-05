@@ -4,19 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:padding="20dp">
+    android:paddingBottom="20dp"
+    tools:background="@color/colorPrimary">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorDivider"/>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/channelPhotoImg"
+        android:id="@+id/channelCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider"
         app:cardCornerRadius="25dp">
 
         <ImageView
+            android:id="@+id/channelCoursePhotoImg"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/image4"
+            tools:src="@drawable/image4"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="@+id/background"
             app:layout_constraintCircleRadius="40dp"
             app:layout_constraintEnd_toEndOf="@+id/background"
@@ -26,36 +40,37 @@
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/channelItemTxt"
+        android:id="@+id/channelCourseItemTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:text="Mindvalley Mentoring"
+        tools:text="Mindvalley Mentoring"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/channelItemCountTxt"
-        app:layout_constraintStart_toEndOf="@id/channelPhotoImg" />
+        app:layout_constraintBottom_toTopOf="@id/channelCourseItemCountTxt"
+        app:layout_constraintStart_toEndOf="@id/channelCard" />
 
     <TextView
-        android:id="@+id/channelItemCountTxt"
+        android:id="@+id/channelCourseItemCountTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:text="78 episodes"
+        tools:text="78 episodes"
         android:textColor="@color/colorSubTitle"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/channelPhotoImg"
-        app:layout_constraintStart_toEndOf="@id/channelPhotoImg" />
+        app:layout_constraintBottom_toBottomOf="@id/channelCard"
+        app:layout_constraintStart_toEndOf="@id/channelCard" />
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/channelCourseRecycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginTop="14dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/channelItemCountTxt"
+        app:layout_constraintTop_toBottomOf="@id/channelCourseItemCountTxt"
         tools:itemCount="6"
         tools:listitem="@layout/channel_course_item" />
 

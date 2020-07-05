@@ -7,9 +7,10 @@ import com.mindvalley.personalgrowth.local.entity.ChannelItem
 
 class ChannelItemConverter {
 
+    val gson = Gson()
+
     @TypeConverter
     fun fromChannelItem(channelItem: ChannelItem): String {
-        val gson = Gson()
         val type = object : TypeToken<ChannelItem>() {
 
         }.type
@@ -18,7 +19,6 @@ class ChannelItemConverter {
 
     @TypeConverter
     fun toChannelItem(channelItemString: String): ChannelItem {
-        val gson = Gson()
         val type = object : TypeToken<ChannelItem>() {
 
         }.type
