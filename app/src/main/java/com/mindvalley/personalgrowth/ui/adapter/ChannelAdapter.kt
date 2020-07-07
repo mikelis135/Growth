@@ -128,6 +128,7 @@ class ChannelAdapter(
                 channelSeriesRecycler.adapter = channelSeriesAdapter
             }
 
+
         }
     }
 }

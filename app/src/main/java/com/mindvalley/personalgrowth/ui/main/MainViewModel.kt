@@ -26,27 +26,6 @@ class MainViewModel @Inject constructor(
         processCategories()
     }
 
-    fun processCategories() {
-
-        viewModelScope.launch{
-
-            mainRepository.getCategories({
-
-                viewModelScope.launch{
-
-                    mainRepository.saveCategory(it) { channelCategory ->
-                        channelCategories = channelCategory
-                    }
-                }
-
-            }, {
-
-            })
-
-        }
-
-    }
-
 
     fun processNewEpisodes() {
 
@@ -77,6 +56,27 @@ class MainViewModel @Inject constructor(
                         channels = channel
                     }
                 }
+            }, {
+
+            })
+
+        }
+
+    }
+
+    fun processCategories() {
+
+        viewModelScope.launch {
+
+            mainRepository.getCategories({
+
+                viewModelScope.launch {
+
+                    mainRepository.saveCategory(it) { channelCategory ->
+                        channelCategories = channelCategory
+                    }
+                }
+
             }, {
 
             })

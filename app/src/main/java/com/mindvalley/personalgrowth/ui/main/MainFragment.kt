@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mindvalley.personalgrowth.App
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.ui.adapter.CategoriesAdapter
@@ -47,8 +48,8 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.newEpisodes.observe(this, Observer { newEpisode ->
-            newEpisode?.data?.media?.let {
+        viewModel.newEpisodes.observe(this, Observer {
+            it?.data?.media?.let {
 
                 newEpisodesAdapter = NewEpisodesAdapter(requireContext(), it)
                 rootView.newEpisodesRcl.adapter = newEpisodesAdapter
@@ -56,9 +57,9 @@ class MainFragment : Fragment() {
             }
         })
 
-        viewModel.channels.observe(this, Observer { channel ->
+        viewModel.channels.observe(this, Observer {
 
-            channel?.data?.channels?.let {
+            it?.data?.channels?.let {
 
                 channelAdapter = ChannelAdapter(requireContext(), it)
                 rootView.channelRcl.adapter = channelAdapter
@@ -66,10 +67,9 @@ class MainFragment : Fragment() {
             }
         })
 
+        viewModel.channelCategories.observe(this, Observer {
 
-        viewModel.channelCategories.observe(this, Observer { channelCategory ->
-
-            channelCategory?.data?.categories?.let {
+            it?.data?.categories?.let {
 
                 categoriesAdapter = CategoriesAdapter(requireContext(), it)
                 rootView.categoryRcl.adapter = categoriesAdapter

@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.model.Course
 import kotlinx.android.synthetic.main.new_episodes_item.view.*
+import java.lang.Integer.min
 
 class NewEpisodesAdapter(
     private val context: Context,
@@ -34,7 +35,7 @@ class NewEpisodesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return episodeList.size.coerceAtMost(6)
+        return min(episodeList.size, 6)
     }
 
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {

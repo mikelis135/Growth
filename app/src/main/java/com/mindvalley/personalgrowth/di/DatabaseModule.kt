@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.mindvalley.personalgrowth.database.AppDatabase
-import com.mindvalley.personalgrowth.database.DBConstants
+import com.mindvalley.personalgrowth.database.AppConstants
 import com.mindvalley.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.mindvalley.personalgrowth.database.dao.ChannelsDAO
 import com.mindvalley.personalgrowth.database.dao.NewEpisodesDAO
@@ -44,9 +44,9 @@ class DatabaseModule(private val application: Application) {
     @Provides
     fun providesDatabase(): AppDatabase {
 
-        var appDatabase: AppDatabase? = null
+        var INSTANCE: AppDatabase? = null
 
-        val tempInstance = appDatabase
+        val tempInstance = INSTANCE
         if (tempInstance != null) {
             return tempInstance
         }
@@ -55,9 +55,9 @@ class DatabaseModule(private val application: Application) {
             val instance = Room.databaseBuilder(
                 application,
                 AppDatabase::class.java,
-                DBConstants.DATABASE_NAME
+                AppConstants.DATABASE_NAME
             ).fallbackToDestructiveMigration().build()
-            appDatabase = instance
+            INSTANCE = instance
             return instance
         }
 

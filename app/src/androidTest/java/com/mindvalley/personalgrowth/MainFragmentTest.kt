@@ -11,10 +11,11 @@ import org.junit.Test
 class MainFragmentTest {
 
     @Test
-    fun runApp(){
+    fun runApp_channelsTitleIsDisplayed() {
         ActivityScenario.launch(MainActivity::class.java)
 
-        onView(withText("ok")).check(matches(isDisplayed()))
+        onView(withText("Channels")).check(matches(isDisplayed()))
 
     }
+
 }

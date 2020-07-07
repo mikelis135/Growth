@@ -1,6 +1,7 @@
 package com.mindvalley.personalgrowth.di
 
 import com.google.gson.Gson
+import com.mindvalley.personalgrowth.database.AppConstants
 import com.mindvalley.personalgrowth.remote.ApiService
 import dagger.Module
 import dagger.Provides
@@ -20,11 +21,6 @@ class RemoteModule {
         return retrofit.create(ApiService::class.java)
     }
 
-    @Provides
-    @Singleton
-    fun providesGson(): Gson {
-        return Gson()
-    }
 
     @Provides
     @Singleton
@@ -46,7 +42,7 @@ class RemoteModule {
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://pastebin.com/")
+            .baseUrl(AppConstants.BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

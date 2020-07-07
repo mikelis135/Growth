@@ -48,7 +48,6 @@ class MainViewModelUnitTest {
     @Test
     fun onSuccess_processCategoriesNetworkCalled() =
         testCoroutineRule.testCoroutineDispatcher.runBlockingTest {
-            println("hello")
             val callback: (ChannelCategory) -> Unit = mock()
 
             viewModel.processCategories()
@@ -84,7 +83,6 @@ class MainViewModelUnitTest {
     @Test
     fun onSuccess_processNewEpisodesNetworkCalled() =
         testCoroutineRule.testCoroutineDispatcher.runBlockingTest {
-
             val callback: (ChannelCategory) -> Unit = mock()
 
             viewModel.processNewEpisodes()

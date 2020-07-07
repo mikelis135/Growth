@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.model.Series
 import kotlinx.android.synthetic.main.channel_series_item.view.*
+import java.lang.Integer.min
 
 class ChannelSeriesAdapter(
     private val context: Context,
@@ -35,7 +36,7 @@ class ChannelSeriesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return channelSeriesList.size.coerceAtMost(6)
+        return  min(channelSeriesList.size, 6)
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
