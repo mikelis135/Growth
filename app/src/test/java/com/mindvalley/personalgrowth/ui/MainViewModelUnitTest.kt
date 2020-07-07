@@ -28,7 +28,6 @@ class MainViewModelUnitTest {
     @get:Rule
     val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
-    @ExperimentalCoroutinesApi
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
 
@@ -49,7 +48,7 @@ class MainViewModelUnitTest {
     @Test
     fun onSuccess_processCategoriesNetworkCalled() =
         testCoroutineRule.testCoroutineDispatcher.runBlockingTest {
-
+            println("hello")
             val callback: (ChannelCategory) -> Unit = mock()
 
             viewModel.processCategories()

@@ -7,7 +7,7 @@ import com.mindvalley.personalgrowth.model.Media
 
 class MediaConverter {
 
-    val gson = Gson()
+    private val gson = Gson()
 
     @TypeConverter
     fun fromMedia(media: Media): String {
@@ -22,7 +22,7 @@ class MediaConverter {
         val type = object : TypeToken<Media>() {
 
         }.type
-        return gson.fromJson<Media>(mediaString, type)
+        return gson.fromJson(mediaString, type)
     }
 
 }

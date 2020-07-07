@@ -44,9 +44,9 @@ class DatabaseModule(private val application: Application) {
     @Provides
     fun providesDatabase(): AppDatabase {
 
-        var INSTANCE: AppDatabase? = null
+        var appDatabase: AppDatabase? = null
 
-        val tempInstance = INSTANCE
+        val tempInstance = appDatabase
         if (tempInstance != null) {
             return tempInstance
         }
@@ -57,7 +57,7 @@ class DatabaseModule(private val application: Application) {
                 AppDatabase::class.java,
                 DBConstants.DATABASE_NAME
             ).fallbackToDestructiveMigration().build()
-            INSTANCE = instance
+            appDatabase = instance
             return instance
         }
 

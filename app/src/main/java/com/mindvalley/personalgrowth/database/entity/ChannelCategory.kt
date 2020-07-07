@@ -8,7 +8,7 @@ import com.mindvalley.personalgrowth.model.Category
 @Entity(tableName = DBConstants.CHANNEL_CATAGORY_TABLE)
 class ChannelCategory(
     @PrimaryKey
-    val id: Int = 0,
+    var id: Int = 0,
     val data: Category?
 )
 

@@ -1,13 +1,11 @@
 package com.mindvalley.personalgrowth.di
 
-import android.content.Context
 import com.google.gson.Gson
 import com.mindvalley.personalgrowth.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.mockito.Mockito
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

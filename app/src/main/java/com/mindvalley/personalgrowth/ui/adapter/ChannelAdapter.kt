@@ -77,12 +77,14 @@ class ChannelAdapter(
         private val channelCourseImage: ImageView = itemView.channelCoursePhotoImg
         private val channelCourseRecyclerView: RecyclerView = itemView.channelCourseRecycler
 
-        lateinit var channelCourseAdapter: ChannelCourseAdapter
+        private lateinit var channelCourseAdapter: ChannelCourseAdapter
 
         fun bind(channelItem: ChannelItem, context: Context) {
             channelTitle.text = channelItem.title
-            channelCountTitle.text =
-                context.getString(R.string.episodes, channelItem.latestMedia?.size)
+
+            channelItem.latestMedia?.size?.let {
+                channelCountTitle.text = context.resources.getQuantityString(R.plurals.episodes, it, it)
+            }
 
             Glide.with(context).load(channelItem.iconAsset?.thumbnailUrl)
                 .placeholder(R.drawable.ic_placeholder)
@@ -104,11 +106,14 @@ class ChannelAdapter(
         private val channelSeriesImage: ImageView = itemView.channelSeriesPhotoImg
         private val channelSeriesRecycler: RecyclerView = itemView.channelSeriesRecycler
 
-        lateinit var channelSeriesAdapter: ChannelSeriesAdapter
+        private lateinit var channelSeriesAdapter: ChannelSeriesAdapter
 
         fun bind(channelItem: ChannelItem, context: Context) {
             channelTitle.text = channelItem.title
-            channelCountTitle.text = context.getString(R.string.series, channelItem.series?.size)
+            channelItem.series?.size?.let {
+                channelCountTitle.text =
+                   context.resources.getQuantityString(R.plurals.series, it, it)
+            }
 
             val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
             Glide.with(context).load(channelItem.iconAsset?.thumbnailUrl).apply(requestOptions)
@@ -122,7 +127,6 @@ class ChannelAdapter(
                 channelSeriesAdapter = ChannelSeriesAdapter(context, it)
                 channelSeriesRecycler.adapter = channelSeriesAdapter
             }
-
 
         }
     }

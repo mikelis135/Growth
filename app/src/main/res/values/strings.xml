@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">Personal Growth</string>
-    <string name="series"> %1$s series</string>
-    <string name="episodes"> %1$s episodes</string>
+    <plurals name="series">
+        <item quantity="one">%d series</item>
+        <item quantity="other">%d series</item>
+    </plurals>
+    <plurals name="episodes">
+        <item quantity="one">%1$d episode</item>
+        <item quantity="other">%1$d episodes</item>
+    </plurals>
     <string name="health_fitness">Health &amp; Fitness</string>
     <string name="loneliness">The Cure For Loneliness</string>
     <string name="mentoring">Mindvalley Mentoring</string>

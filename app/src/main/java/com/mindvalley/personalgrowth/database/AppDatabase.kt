@@ -18,9 +18,7 @@ import com.mindvalley.personalgrowth.database.entity.NewEpisodes
 )
 @TypeConverters(
     CategoryConverter::class,
-    CourseConverter::class,
     MediaConverter::class,
-    ChannelItemConverter::class,
     AllChannelsConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {

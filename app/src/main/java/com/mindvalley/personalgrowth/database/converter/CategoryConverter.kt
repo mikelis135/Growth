@@ -7,7 +7,7 @@ import com.mindvalley.personalgrowth.model.Category
 
 class CategoryConverter {
 
-    val gson = Gson()
+    private val gson = Gson()
 
     @TypeConverter
     fun fromCategory(category: Category): String {
@@ -22,7 +22,7 @@ class CategoryConverter {
         val type = object : TypeToken<Category>() {
 
         }.type
-        return gson.fromJson<Category>(categoryString, type)
+        return gson.fromJson(categoryString, type)
     }
 
 }

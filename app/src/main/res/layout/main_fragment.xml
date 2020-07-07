@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     android:padding="@dimen/channelPadding"
     tools:context=".ui.main.MainFragment">
 
@@ -24,7 +23,8 @@
             android:textSize="@dimen/channelTitleSize"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="UnusedAttribute" />
 
         <TextView
             android:id="@+id/newEpisodesTxt"
@@ -32,9 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/new_episodes"
-            android:textStyle="bold"
             android:textColor="@color/colorSubTitle"
             android:textSize="@dimen/newEpisodesSize"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/channelsTxt"
             app:layout_constraintTop_toBottomOf="@id/channelsTxt" />
 
@@ -72,10 +72,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryRcl"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/browseCategoryTxt"
             app:spanCount="2"
             tools:listitem="@layout/channel_category_item" />

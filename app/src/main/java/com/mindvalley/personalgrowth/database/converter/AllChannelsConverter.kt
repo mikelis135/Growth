@@ -7,7 +7,7 @@ import com.mindvalley.personalgrowth.model.AllChannels
 
 class AllChannelsConverter {
 
-    val gson = Gson()
+    private val gson = Gson()
 
     @TypeConverter
     fun fromAllChannels(allChannels: AllChannels): String {
@@ -23,7 +23,7 @@ class AllChannelsConverter {
         val type = object : TypeToken<AllChannels>() {
 
         }.type
-        return gson.fromJson<AllChannels>(allChannelsString, type)
+        return gson.fromJson(allChannelsString, type)
     }
 
 }

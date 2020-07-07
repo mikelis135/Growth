@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@color/colorPrimary"
-    android:paddingEnd="@dimen/episodePaddingEnd">
+    android:paddingStart="2dp"
+    android:paddingEnd="@dimen/episodePaddingEnd"
+    tools:background="@color/colorPrimary">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/episodeCardPhoto"
         android:layout_width="@dimen/episodeCardWidth"
         android:layout_height="@dimen/episodeCardHeight"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/episodePhotoImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/image" />
+            android:src="@drawable/image"
+            tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -28,12 +32,13 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
         android:letterSpacing="0.04"
-        tools:text="The Cure For Loneliness"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/channelSize"
         app:layout_constraintEnd_toEndOf="@id/episodeCardPhoto"
         app:layout_constraintStart_toStartOf="@id/episodeCardPhoto"
-        app:layout_constraintTop_toBottomOf="@id/episodeCardPhoto" />
+        app:layout_constraintTop_toBottomOf="@id/episodeCardPhoto"
+        tools:ignore="UnusedAttribute"
+        tools:text="The Cure For Loneliness" />
 
     <TextView
         android:id="@+id/courseTitleTxt"
@@ -42,12 +47,13 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
         android:letterSpacing="0.1"
-        tools:text="Mindvalley Mentoring"
         android:textAllCaps="true"
         android:textColor="@color/colorSubTitle"
         android:textSize="@dimen/courseSize"
         app:layout_constraintEnd_toEndOf="@id/episodeCardPhoto"
         app:layout_constraintStart_toStartOf="@id/episodeCardPhoto"
-        app:layout_constraintTop_toBottomOf="@id/channelTitleTxt" />
+        app:layout_constraintTop_toBottomOf="@id/channelTitleTxt"
+        tools:ignore="UnusedAttribute"
+        tools:text="Mindvalley Mentoring" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
