@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
-import com.mindvalley.personalgrowth.local.entity.ChannelItem
+import com.mindvalley.personalgrowth.model.ChannelItem
 import kotlinx.android.synthetic.main.channel_course_list.view.*
 import kotlinx.android.synthetic.main.channel_series_list.view.*
 

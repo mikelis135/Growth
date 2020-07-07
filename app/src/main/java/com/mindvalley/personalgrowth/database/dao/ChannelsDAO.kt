@@ -1,8 +1,8 @@
-package com.mindvalley.personalgrowth.local.dao
+package com.mindvalley.personalgrowth.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.mindvalley.personalgrowth.local.entity.Channels
+import com.mindvalley.personalgrowth.database.entity.Channels
 
 @Dao
 interface ChannelsDAO {
@@ -13,7 +13,7 @@ interface ChannelsDAO {
     @Update
     suspend fun updateChannels(channels: Channels)
 
-    @Query("select * from channels_table")
+    @Query("select * from channelsTable")
     fun getChannels(): LiveData<Channels>
 
 }

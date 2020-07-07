@@ -1,19 +1,19 @@
-package com.mindvalley.personalgrowth.local
+package com.mindvalley.personalgrowth.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mindvalley.personalgrowth.local.converter.*
-import com.mindvalley.personalgrowth.local.dao.ChannelCategoriesDAO
-import com.mindvalley.personalgrowth.local.dao.ChannelsDAO
-import com.mindvalley.personalgrowth.local.dao.NewEpisodesDAO
-import com.mindvalley.personalgrowth.local.entity.ChannelCategory
-import com.mindvalley.personalgrowth.local.entity.Channels
-import com.mindvalley.personalgrowth.local.entity.NewEpisodes
+import com.mindvalley.personalgrowth.database.converter.*
+import com.mindvalley.personalgrowth.database.dao.ChannelCategoriesDAO
+import com.mindvalley.personalgrowth.database.dao.ChannelsDAO
+import com.mindvalley.personalgrowth.database.dao.NewEpisodesDAO
+import com.mindvalley.personalgrowth.database.entity.ChannelCategory
+import com.mindvalley.personalgrowth.database.entity.Channels
+import com.mindvalley.personalgrowth.database.entity.NewEpisodes
 
 @Database(
     entities = [ChannelCategory::class, NewEpisodes::class, Channels::class],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 @TypeConverters(

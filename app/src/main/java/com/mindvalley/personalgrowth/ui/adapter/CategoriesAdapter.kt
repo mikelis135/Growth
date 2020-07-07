@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mindvalley.personalgrowth.R
-import com.mindvalley.personalgrowth.local.entity.CategoryNames
+import com.mindvalley.personalgrowth.model.CategoryNames
 import kotlinx.android.synthetic.main.channel_category_item.view.*
 
 class CategoriesAdapter(

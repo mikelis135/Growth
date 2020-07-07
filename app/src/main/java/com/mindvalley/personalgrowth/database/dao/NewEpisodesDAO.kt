@@ -1,8 +1,8 @@
-package com.mindvalley.personalgrowth.local.dao
+package com.mindvalley.personalgrowth.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.mindvalley.personalgrowth.local.entity.NewEpisodes
+import com.mindvalley.personalgrowth.database.entity.NewEpisodes
 
 @Dao
 interface NewEpisodesDAO {
@@ -13,7 +13,7 @@ interface NewEpisodesDAO {
     @Update
     suspend fun updateNewEpisodes(newEpisodes: NewEpisodes)
 
-    @Query("select * from new_episodes_table")
+    @Query("select * from newEpisodesTable")
     fun getNewEpisodes(): LiveData<NewEpisodes>
 
 }

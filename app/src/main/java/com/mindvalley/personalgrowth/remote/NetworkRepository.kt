@@ -19,7 +19,7 @@ class NetworkRepository @Inject constructor(
 
         service.getChannelsCategories().enqueue(object : Callback<ChannelCategoryResponse> {
             override fun onFailure(call: Call<ChannelCategoryResponse>, t: Throwable) {
-                onError(t.message + "")
+                onError("${t.message}")
             }
 
             override fun onResponse(
@@ -39,7 +39,7 @@ class NetworkRepository @Inject constructor(
 
         service.getNewEpisodes().enqueue(object : Callback<NewEpisodesResponse> {
             override fun onFailure(call: Call<NewEpisodesResponse>, t: Throwable) {
-                onError(t.message + "")
+                onError("${t.message}")
             }
 
             override fun onResponse(
@@ -59,7 +59,7 @@ class NetworkRepository @Inject constructor(
 
         service.getChannels().enqueue(object : Callback<ChannelsResponse> {
             override fun onFailure(call: Call<ChannelsResponse>, t: Throwable) {
-                onError(t.message + "")
+                onError("${t.message}")
             }
 
             override fun onResponse(

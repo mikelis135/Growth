@@ -24,10 +24,10 @@ class MainFragment : Fragment() {
 
     @Inject
     lateinit var viewModel: MainViewModel
-    lateinit var newEpisodesAdapter: NewEpisodesAdapter
-    lateinit var channelAdapter: ChannelAdapter
-    lateinit var categoriesAdapter: CategoriesAdapter
-    lateinit var rootView: View
+    private lateinit var newEpisodesAdapter: NewEpisodesAdapter
+    private lateinit var channelAdapter: ChannelAdapter
+    private lateinit var categoriesAdapter: CategoriesAdapter
+    private lateinit var rootView: View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,21 +41,12 @@ class MainFragment : Fragment() {
 
         rootView = inflater.inflate(R.layout.main_fragment, container, false)
 
-        rootView.newEpisodesRcl.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        rootView.channelRcl.layoutManager =
-            LinearLayoutManager(requireContext())
-
         return rootView
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        viewModel.name.observe(this, Observer {
-
-        })
 
         viewModel.newEpisodes.observe(this, Observer {
             it?.data?.media?.let {

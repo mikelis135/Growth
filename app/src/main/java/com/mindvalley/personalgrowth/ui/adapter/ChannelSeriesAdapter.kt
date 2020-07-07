@@ -11,8 +11,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
-import com.mindvalley.personalgrowth.local.entity.Series
+import com.mindvalley.personalgrowth.model.Series
 import kotlinx.android.synthetic.main.channel_series_item.view.*
+import java.lang.Integer.min
 
 class ChannelSeriesAdapter(
     private val context: Context,
@@ -35,7 +36,7 @@ class ChannelSeriesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return channelSeriesList.size
+        return  min(channelSeriesList.size, 6)
     }
 
     override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {

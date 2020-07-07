@@ -14,7 +14,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule(private val application: Application) {
+class TestDatabaseModule(private val application: Application) {
 
     @Singleton
     @Provides
@@ -27,6 +27,7 @@ class DatabaseModule(private val application: Application) {
     fun providesNewEpisodesDao(appDatabase: AppDatabase): NewEpisodesDAO {
         return appDatabase.newEpisodesDao()
     }
+
 
     @Provides
     @Singleton

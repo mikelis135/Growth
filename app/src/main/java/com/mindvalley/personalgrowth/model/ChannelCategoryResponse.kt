@@ -1,7 +1,13 @@
 package com.mindvalley.personalgrowth.model
 
-import com.mindvalley.personalgrowth.local.entity.Category
-
 data class ChannelCategoryResponse(
     val data: Category?
+)
+
+data class Category(
+    val categories: List<CategoryNames>?
+)
+
+data class CategoryNames(
+    val name: String = ""
 )

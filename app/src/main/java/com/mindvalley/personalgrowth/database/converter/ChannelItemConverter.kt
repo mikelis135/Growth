@@ -1,9 +1,9 @@
-package com.mindvalley.personalgrowth.local.converter
+package com.mindvalley.personalgrowth.database.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mindvalley.personalgrowth.local.entity.ChannelItem
+import com.mindvalley.personalgrowth.model.ChannelItem
 
 class ChannelItemConverter {
 
