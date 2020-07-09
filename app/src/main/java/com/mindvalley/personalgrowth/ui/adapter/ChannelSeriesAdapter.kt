@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.model.Series
-import kotlinx.android.synthetic.main.channel_series_item.view.*
+import kotlinx.android.synthetic.main.series_item.view.*
 import kotlin.math.min
 
 class ChannelSeriesAdapter(
@@ -28,7 +28,7 @@ class ChannelSeriesAdapter(
 
         return SeriesViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.channel_series_item,
+                R.layout.series_item,
                 parent,
                 false
             )

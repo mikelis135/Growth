@@ -7,12 +7,9 @@ import com.mindvalley.personalgrowth.database.entity.ChannelCategory
 import com.mindvalley.personalgrowth.database.entity.Channels
 import com.mindvalley.personalgrowth.repository.MainRepository
 import com.mindvalley.personalgrowth.ui.main.MainViewModel
-import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -46,114 +43,94 @@ class MainViewModelUnitTest {
     private val errorMessage = "pastebin.com"
 
     @Test
-    fun onSuccess_processCategoriesNetworkCalled() =
-        testCoroutineRule.testDispatcher.runBlockingTest {
-            val callback: (ChannelCategory) -> Unit = mock()
+    fun onSuccess_processCategoriesNetworkCalled() = runBlockingTest {
+        val callback: (ChannelCategory) -> Unit = mock()
 
-            viewModel.processCategories()
-            verify(callback, atLeastOnce())
+        viewModel.processCategories()
 
-            mainRepository.getCategories({
-                assertEquals(callback, it)
-            }, {
+        mainRepository.getCategories({
+            assertEquals(callback, it)
+        }, {
 
-            })
+        })
 
-
-        }
+    }
 
     @Test
-    fun onError_processCategoriesNetworkCalled() =
-        testCoroutineRule.testDispatcher.runBlockingTest {
+    fun onError_processCategoriesNetworkCalled() = runBlockingTest {
 
-            val error: (String) -> Unit = mock()
+        val error: (String) -> Unit = mock()
 
-            viewModel.processCategories()
+        viewModel.processCategories()
 
-            verify(error, atLeastOnce())
+        mainRepository.getCategories({
 
-            mainRepository.getCategories({
+        }, {
 
-            }, {
-                assertEquals(error, it)
-                assertEquals(errorMessage, it)
-            })
+            assertEquals(errorMessage, it)
+            assertEquals(error, it)
+        })
 
-        }
+    }
 
     @Test
-    fun onSuccess_processNewEpisodesNetworkCalled() =
-        testCoroutineRule.testDispatcher.runBlockingTest {
-            val callback: (ChannelCategory) -> Unit = mock()
+    fun onSuccess_processNewEpisodesNetworkCalled() = runBlockingTest {
+        val callback: (ChannelCategory) -> Unit = mock()
 
-            viewModel.processNewEpisodes()
+        viewModel.processNewEpisodes()
 
-            verify(callback, atLeastOnce())
+        mainRepository.getNewEpisodes({
+            assertEquals(callback, it)
+        }, {
 
-            mainRepository.getNewEpisodes({
-                assertEquals(callback, it)
-            }, {
-
-            })
-        }
+        })
+    }
 
     @Test
-    fun onError_processNewEpisodesNetworkCalled() =
-        testCoroutineRule.testDispatcher.runBlockingTest {
+    fun onError_processNewEpisodesNetworkCalled() = runBlockingTest {
 
-            val error: (String) -> Unit = mock()
+        val error: (String) -> Unit = mock()
 
-            viewModel.processNewEpisodes()
+        viewModel.processNewEpisodes()
 
-            verify(error, atLeastOnce())
+        mainRepository.getNewEpisodes({
 
-            mainRepository.getNewEpisodes({
+        }, {
+            assertEquals(errorMessage, it)
+            assertEquals(error, it)
 
-            }, {
-                assertEquals(errorMessage, it)
-                assertEquals(error, it)
-            })
+        })
 
-        }
+    }
 
     @Test
-    fun onSuccess_processChannelsNetworkCalled() =
-        testCoroutineRule.testDispatcher.runBlockingTest {
+    fun onSuccess_processChannelsNetworkCalled() = runBlockingTest {
 
-            val callback: (Channels) -> Unit = mock()
+        val callback: (Channels) -> Unit = mock()
 
-            viewModel.processChannels()
+        viewModel.processChannels()
 
-            verify(callback, atLeastOnce())
+        mainRepository.getChannels({
+            assertEquals(callback, it)
+        }, {
 
-            mainRepository.getChannels({
-                assertEquals(callback, it)
-            }, {
-
-            })
-        }
+        })
+    }
 
     @Test
-    fun onError_processChannelsNetworkCalled() =
-        testCoroutineRule.testDispatcher.runBlockingTest {
+    fun onError_processChannelsNetworkCalled() = runBlockingTest {
 
-            val error: (String) -> Unit = mock()
+        val error: (String) -> Unit = mock()
 
-            viewModel.processChannels()
+        viewModel.processChannels()
 
-            verify(error, atLeastOnce())
+        mainRepository.getChannels({
 
-            mainRepository.getChannels({
+        }, {
+            assertEquals(errorMessage, it)
+            assertEquals(error, it)
+        })
 
-            }, {
-                assertEquals(errorMessage, it)
-            })
-
-        }
-
-    @After
-    fun validate() {
-//        validateMockitoUsage()
     }
 
 }

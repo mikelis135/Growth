@@ -4,10 +4,10 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mindvalley.personalgrowth.model.AllChannels
 import com.mindvalley.personalgrowth.model.ChannelItem
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Test
 
 internal class AllChannelsConverterTest {

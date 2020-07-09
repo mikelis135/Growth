@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.model.ChannelMedia
-import kotlinx.android.synthetic.main.channel_course_item.view.*
+import kotlinx.android.synthetic.main.course_item.view.*
 import kotlin.math.min
 
 class ChannelCourseAdapter(
@@ -28,7 +28,7 @@ class ChannelCourseAdapter(
 
         return CourseViewHolder(
             LayoutInflater.from(context).inflate(
-                R.layout.channel_course_item,
+                R.layout.course_item,
                 parent,
                 false
             )

@@ -16,7 +16,7 @@ import com.mindvalley.personalgrowth.ui.adapter.NewEpisodesAdapter
 import kotlinx.android.synthetic.main.channel_category_content.view.*
 import kotlinx.android.synthetic.main.channel_content.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
-import kotlinx.android.synthetic.main.shimmer_channel_category_content.view.*
+import kotlinx.android.synthetic.main.shimmer_category_content.view.*
 import kotlinx.android.synthetic.main.shimmer_channel_content.view.*
 import javax.inject.Inject
 

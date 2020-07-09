@@ -35,7 +35,7 @@
 
                     <include
                         android:id="@+id/episode1"
-                        layout="@layout/shimmer_new_episodes_item"
+                        layout="@layout/shimmer_new_episode_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
 
                     <include
                         android:id="@+id/episode2"
-                        layout="@layout/shimmer_new_episodes_item"
+                        layout="@layout/shimmer_new_episode_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/episode1"
@@ -51,7 +51,7 @@
 
                     <include
                         android:id="@+id/episode3"
-                        layout="@layout/shimmer_new_episodes_item"
+                        layout="@layout/shimmer_new_episode_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/episode2"
@@ -90,7 +90,7 @@
 
                     <include
                         android:id="@+id/episode1"
-                        layout="@layout/shimmer_channel_series_item"
+                        layout="@layout/shimmer_series_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
 
                     <include
                         android:id="@+id/episode2"
-                        layout="@layout/shimmer_channel_series_item"
+                        layout="@layout/shimmer_series_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/episode1"
@@ -106,7 +106,7 @@
 
                     <include
                         android:id="@+id/episode3"
-                        layout="@layout/shimmer_channel_series_item"
+                        layout="@layout/shimmer_series_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toEndOf="@id/episode2"
