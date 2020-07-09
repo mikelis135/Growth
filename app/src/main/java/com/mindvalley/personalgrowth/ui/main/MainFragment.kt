@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.mindvalley.personalgrowth.App
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.ui.adapter.CategoriesAdapter
 import com.mindvalley.personalgrowth.ui.adapter.ChannelAdapter
 import com.mindvalley.personalgrowth.ui.adapter.NewEpisodesAdapter
+import kotlinx.android.synthetic.main.channel_category_content.view.*
+import kotlinx.android.synthetic.main.channel_content.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
+import kotlinx.android.synthetic.main.shimmer_channel_category_content.view.*
+import kotlinx.android.synthetic.main.shimmer_channel_content.view.*
 import javax.inject.Inject
 
 class MainFragment : Fragment() {
@@ -41,6 +45,12 @@ class MainFragment : Fragment() {
 
         rootView = inflater.inflate(R.layout.main_fragment, container, false)
 
+        rootView.refreshSrl.setOnRefreshListener {
+            viewModel.processNewEpisodes()
+            viewModel.processChannels()
+            viewModel.processCategories()
+        }
+
         return rootView
     }
 
@@ -49,9 +59,22 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.newEpisodes.observe(this, Observer {
-            it?.data?.media?.let {
 
-                newEpisodesAdapter = NewEpisodesAdapter(requireContext(), it)
+            if (it == null) {
+                rootView.shimmerChannelContent.visibility = View.VISIBLE
+                rootView.browseShimmerCategoryTxt.visibility = View.VISIBLE
+                rootView.shimmerEpisode.startShimmer()
+            }
+
+            it?.data?.media?.let { courseList ->
+
+                rootView.refreshSrl.isRefreshing = false
+                rootView.shimmerEpisode.visibility = View.GONE
+                rootView.browseShimmerCategoryTxt.visibility = View.GONE
+                rootView.shimmerChannelContent.visibility = View.VISIBLE
+                rootView.browseCategoryTxt.visibility = View.VISIBLE
+
+                newEpisodesAdapter = NewEpisodesAdapter(requireContext(), courseList)
                 rootView.newEpisodesRcl.adapter = newEpisodesAdapter
 
             }
@@ -59,9 +82,21 @@ class MainFragment : Fragment() {
 
         viewModel.channels.observe(this, Observer {
 
-            it?.data?.channels?.let {
+            if (it == null) {
+                rootView.shimmerChannelContent.visibility = View.VISIBLE
+                rootView.browseShimmerCategoryTxt.visibility = View.VISIBLE
+                rootView.shimmerChannel.startShimmer()
+            }
 
-                channelAdapter = ChannelAdapter(requireContext(), it)
+            it?.data?.channels?.let { channelItemList ->
+
+                rootView.refreshSrl.isRefreshing = false
+                rootView.shimmerChannel.visibility = View.GONE
+                rootView.browseShimmerCategoryTxt.visibility = View.GONE
+                rootView.channelContent.visibility = View.VISIBLE
+                rootView.browseCategoryTxt.visibility = View.VISIBLE
+
+                channelAdapter = ChannelAdapter(requireContext(), channelItemList)
                 rootView.channelRcl.adapter = channelAdapter
 
             }
@@ -69,13 +104,39 @@ class MainFragment : Fragment() {
 
         viewModel.channelCategories.observe(this, Observer {
 
-            it?.data?.categories?.let {
+            if (it == null) {
+                rootView.shimmerChannelCategoryContent.visibility = View.VISIBLE
+                rootView.browseShimmerCategoryTxt.visibility = View.VISIBLE
+                rootView.shimmerChannelCategory.startShimmer()
+            }
 
-                categoriesAdapter = CategoriesAdapter(requireContext(), it)
-                rootView.categoryRcl.adapter = categoriesAdapter
+            it?.data?.categories?.let { categoryNamesList ->
+
+                rootView.refreshSrl.isRefreshing = false
+                rootView.shimmerChannelCategory.visibility = View.GONE
+                rootView.browseShimmerCategoryTxt.visibility = View.GONE
+                rootView.channelCategoryContent.visibility = View.VISIBLE
+                rootView.browseCategoryTxt.visibility = View.VISIBLE
+
+                categoriesAdapter = CategoriesAdapter(requireContext(), categoryNamesList)
+                rootView.channelCategoryRcl.adapter = categoriesAdapter
 
             }
         })
+
+        viewModel.newEpisodesError.observe(this, Observer {
+
+            it?.let {
+                rootView.refreshSrl.isRefreshing = false
+                Snackbar.make(
+                    rootView.contentNsv,
+                    "Unstable internet? Pull to refresh",
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+
+        })
+
     }
 
 }

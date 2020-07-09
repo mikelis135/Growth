@@ -22,7 +22,7 @@ class MediaConverter {
         val type = object : TypeToken<Media>() {
 
         }.type
-        return gson.fromJson<Media>(mediaString, type)
+        return gson.fromJson(mediaString, type)
     }
 
 }

@@ -1,6 +1,5 @@
 package com.mindvalley.personalgrowth.di
 
-import com.google.gson.Gson
 import com.mindvalley.personalgrowth.database.AppConstants
 import com.mindvalley.personalgrowth.remote.ApiService
 import dagger.Module
@@ -26,9 +25,9 @@ class RemoteModule {
     @Singleton
     fun providesPlainOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .readTimeout(1, TimeUnit.MINUTES)
-            .writeTimeout(1, TimeUnit.MINUTES)
-            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
             .apply {
                 val logging = HttpLoggingInterceptor()
                 logging.level = HttpLoggingInterceptor.Level.BODY

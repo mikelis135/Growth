@@ -5,6 +5,7 @@ import androidx.room.*
 import com.mindvalley.personalgrowth.database.entity.ChannelCategory
 
 @Dao
+
 interface ChannelCategoriesDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

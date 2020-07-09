@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:animateLayoutChanges="true"
+    android:padding="8dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/episodeShimmerCardPhotoCardPhoto"
+        android:layout_width="@dimen/categoryWidth"
+        android:layout_height="@dimen/categoryHeight"
+        android:padding="10dp"
+        app:cardCornerRadius="@dimen/categoryCornerRadius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
+
+            <View
+                android:id="@+id/categoryShimmerNameTxt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/shimmerTitleHeight"
+                android:layout_marginStart="@dimen/channelPadding"
+                android:layout_marginEnd="@dimen/channelPadding"
+                android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toTopOf="@+id/categoryShimmerNameMoreTxt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/categoryShimmerNameMoreTxt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/shimmerTitleHeight"
+                android:layout_marginStart="@dimen/shimmerSubTitlePadding"
+                android:layout_marginEnd="@dimen/shimmerSubTitlePadding"
+                android:background="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/categoryShimmerNameTxt"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@id/categoryShimmerNameTxt"
+                app:layout_constraintTop_toBottomOf="@+id/categoryShimmerNameTxt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

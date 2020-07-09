@@ -2,14 +2,13 @@ package com.mindvalley.personalgrowth.database.converter
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.mindvalley.personalgrowth.model.AllChannels
 import com.mindvalley.personalgrowth.model.Category
 import com.mindvalley.personalgrowth.model.CategoryNames
 import org.hamcrest.CoreMatchers
-import org.junit.Assert
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 internal class CategoryConverterTest {
 
@@ -28,7 +27,7 @@ internal class CategoryConverterTest {
         val categoryString = gson.toJson(category, type)
 
         //Assert
-        Assert.assertThat(categoryString, CoreMatchers.containsString("Taiwo"))
+        assertThat(categoryString, CoreMatchers.containsString("Taiwo"))
 
     }
 
@@ -44,7 +43,7 @@ internal class CategoryConverterTest {
         val categoryString = gson.toJson(category, type)
 
         //Assert
-        Assert.assertFalse(categoryString, categoryString.isNullOrBlank())
+        assertFalse(categoryString, categoryString.isNullOrBlank())
 
     }
 
@@ -72,7 +71,10 @@ internal class CategoryConverterTest {
         val category = gson.fromJson<Category>(categoryString, type)
 
         //Assert
-        assertFalse(category?.categories?.get(0)?.name, category?.categories?.get(0)?.name.isNullOrBlank())
+        assertFalse(
+            category?.categories?.get(0)?.name,
+            category?.categories?.get(0)?.name.isNullOrBlank()
+        )
 
     }
 

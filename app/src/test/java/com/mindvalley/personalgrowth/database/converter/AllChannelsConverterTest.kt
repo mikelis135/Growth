@@ -4,11 +4,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mindvalley.personalgrowth.model.AllChannels
 import com.mindvalley.personalgrowth.model.ChannelItem
-import org.hamcrest.CoreMatchers
-import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.jupiter.api.Test
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Test
 
 internal class AllChannelsConverterTest {
 
@@ -27,8 +27,8 @@ internal class AllChannelsConverterTest {
         val channelsString = gson.toJson(channelsSent, type)
 
         //Assert
-        Assert.assertThat(channelsString, CoreMatchers.containsString("Mindvalley"))
-        Assert.assertThat(channelsString, CoreMatchers.containsString("10"))
+        assertThat(channelsString, CoreMatchers.containsString("Mindvalley"))
+        assertThat(channelsString, CoreMatchers.containsString("10"))
 
     }
 
@@ -45,7 +45,7 @@ internal class AllChannelsConverterTest {
         val channelsString = gson.toJson(channelsSent, type)
 
         //Assert
-        Assert.assertFalse(channelsString, channelsString.isNullOrBlank())
+        assertFalse(channelsString, channelsString.isNullOrBlank())
 
     }
 
@@ -53,7 +53,8 @@ internal class AllChannelsConverterTest {
     fun toAllChannels_returns_CorrectData() {
 
         //Arrange
-        val channelString = "{\"channels\":[{\"title\":\"Mindvalley\",\"mediaCount\":10,\"id\":\"\"}]}"
+        val channelString =
+            "{\"channels\":[{\"title\":\"Mindvalley\",\"mediaCount\":10,\"id\":\"\"}]}"
 
         //Act
         val allChannels = gson.fromJson<AllChannels>(channelString, type)
@@ -69,13 +70,17 @@ internal class AllChannelsConverterTest {
     fun toAllChannels_returns_WrongData() {
 
         //Arrange
-        val channelString = "{\"channels\":[{\"title\":\"Mindvalley\",\"mediaCount\":10,\"id\":\"\"}]}"
+        val channelString =
+            "{\"channels\":[{\"title\":\"Mindvalley\",\"mediaCount\":10,\"id\":\"\"}]}"
 
         //Act
         val allChannels = gson.fromJson<AllChannels>(channelString, type)
 
         //Assert
-        assertFalse(allChannels?.channels?.get(0)?.title, allChannels?.channels?.get(0)?.title.isNullOrBlank())
+        assertFalse(
+            allChannels?.channels?.get(0)?.title,
+            allChannels?.channels?.get(0)?.title.isNullOrBlank()
+        )
 
     }
 

@@ -8,7 +8,7 @@
     <dimen name="episodeCardHeight">220dp</dimen>
     <dimen name="channelTitleMarginTop">50dp</dimen>
     <dimen name="channelPhotoHeight">60dp</dimen>
-    <dimen name="channelPhotoWidth">80dp</dimen>
+    <dimen name="channelPhotoWidth">65dp</dimen>
     <dimen name="channelItemSize">35sp</dimen>
     <dimen name="channelItemCountSize">30sp</dimen>
     <dimen name="channelMediaTitleSize">35sp</dimen>
@@ -20,5 +20,7 @@
     <dimen name="categoryWidth">400dp</dimen>
     <dimen name="categoryHeight">80dp</dimen>
     <dimen name="categoryCornerRadius">70dp</dimen>
+    <dimen name="shimmerTitleHeight">10dp</dimen>
+    <dimen name="shimmerSubTitlePadding">20dp</dimen>
 
 </resources>

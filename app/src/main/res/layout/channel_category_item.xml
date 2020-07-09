@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     android:padding="8dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/episodeCardPhoto"
         android:layout_width="@dimen/categoryWidth"
         android:layout_height="@dimen/categoryHeight"
+        android:padding="10dp"
         app:cardBackgroundColor="@color/colorGrey"
         app:cardCornerRadius="@dimen/categoryCornerRadius"
-        android:padding="10dp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -31,8 +31,8 @@
             android:paddingBottom="10dp"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/channelItemCountSize"
-            tools:text="@string/health_fitness"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="UnusedAttribute"
+            tools:text="@string/health_fitness" />
 
     </androidx.cardview.widget.CardView>
 

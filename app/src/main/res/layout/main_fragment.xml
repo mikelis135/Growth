@@ -1,87 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/refreshSrl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/channelPadding"
+    android:layout_margin="@dimen/channelPadding"
+    android:animateLayoutChanges="true"
     tools:context=".ui.main.MainFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentNsv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/channelsTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/channelTitleMarginTop"
-            android:letterSpacing="0.05"
-            android:text="@string/channels"
-            android:textColor="@color/colorTitle"
-            android:textSize="@dimen/channelTitleSize"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute" />
-
-        <TextView
-            android:id="@+id/newEpisodesTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/new_episodes"
-            android:textColor="@color/colorSubTitle"
-            android:textSize="@dimen/newEpisodesSize"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/channelsTxt"
-            app:layout_constraintTop_toBottomOf="@id/channelsTxt" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/newEpisodesRcl"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/newEpisodesTxt"
-            tools:listitem="@layout/new_episodes_item" />
+            android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/channelRcl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/newEpisodesRcl"
-            tools:itemCount="3"
-            tools:listitem="@layout/channel_series_list" />
+            <TextView
+                android:id="@+id/channelsTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/channelTitleMarginTop"
+                android:letterSpacing="0.05"
+                android:text="@string/channels"
+                android:textColor="@color/colorTitle"
+                android:textSize="@dimen/channelTitleSize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="UnusedAttribute" />
 
-        <TextView
-            android:id="@+id/browseCategoryTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="@string/browse_categories"
-            android:textColor="@color/colorSubTitle"
-            android:textSize="@dimen/channelMediaTitleSize"
-            app:layout_constraintStart_toStartOf="@id/channelsTxt"
-            app:layout_constraintTop_toBottomOf="@id/channelRcl" />
+            <TextView
+                android:id="@+id/newEpisodesTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/new_episodes"
+                android:textColor="@color/colorSubTitle"
+                android:textSize="@dimen/newEpisodesSize"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/channelsTxt"
+                app:layout_constraintTop_toBottomOf="@id/channelsTxt" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryRcl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/browseCategoryTxt"
-            app:spanCount="2"
-            tools:listitem="@layout/channel_category_item" />
+            <include
+                android:id="@+id/channelContent"
+                layout="@layout/channel_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/newEpisodesTxt" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/shimmerChannelContent"
+                layout="@layout/shimmer_channel_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/newEpisodesTxt" />
 
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:id="@+id/browseCategoryTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/browse_categories"
+                android:textColor="@color/colorSubTitle"
+                android:textSize="@dimen/channelMediaTitleSize"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/channelContent" />
+
+            <TextView
+                android:id="@+id/browseShimmerCategoryTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/browse_categories"
+                android:textColor="@color/colorSubTitle"
+                android:textSize="@dimen/channelMediaTitleSize"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shimmerChannelContent" />
+
+            <include
+                android:id="@+id/channelCategoryContent"
+                layout="@layout/channel_category_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/browseCategoryTxt" />
+
+            <include
+                android:id="@+id/shimmerChannelCategoryContent"
+                layout="@layout/shimmer_channel_category_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/browseShimmerCategoryTxt" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

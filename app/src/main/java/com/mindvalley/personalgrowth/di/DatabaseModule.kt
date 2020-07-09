@@ -2,15 +2,15 @@ package com.mindvalley.personalgrowth.di
 
 import android.app.Application
 import androidx.room.Room
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
-import com.mindvalley.personalgrowth.database.AppDatabase
 import com.mindvalley.personalgrowth.database.AppConstants
+import com.mindvalley.personalgrowth.database.AppDatabase
 import com.mindvalley.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.mindvalley.personalgrowth.database.dao.ChannelsDAO
 import com.mindvalley.personalgrowth.database.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
@@ -28,12 +28,6 @@ class DatabaseModule(private val application: Application) {
         return appDatabase.newEpisodesDao()
     }
 
-    @Provides
-    @Singleton
-    fun providesRequestManager(): RequestManager {
-        return Glide.with(application.applicationContext)
-    }
-
     @Singleton
     @Provides
     fun providesChannelsDAO(appDatabase: AppDatabase): ChannelsDAO {
@@ -42,11 +36,17 @@ class DatabaseModule(private val application: Application) {
 
     @Singleton
     @Provides
+    fun providesDispatcher(): CoroutineDispatcher {
+        return Dispatchers.IO
+    }
+
+    @Singleton
+    @Provides
     fun providesDatabase(): AppDatabase {
 
-        var INSTANCE: AppDatabase? = null
+        var appInstance: AppDatabase? = null
 
-        val tempInstance = INSTANCE
+        val tempInstance = appInstance
         if (tempInstance != null) {
             return tempInstance
         }
@@ -57,7 +57,7 @@ class DatabaseModule(private val application: Application) {
                 AppDatabase::class.java,
                 AppConstants.DATABASE_NAME
             ).fallbackToDestructiveMigration().build()
-            INSTANCE = instance
+            appInstance = instance
             return instance
         }
 

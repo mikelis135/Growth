@@ -3,7 +3,9 @@ package com.mindvalley.personalgrowth.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.mindvalley.personalgrowth.database.converter.*
+import com.mindvalley.personalgrowth.database.converter.AllChannelsConverter
+import com.mindvalley.personalgrowth.database.converter.CategoryConverter
+import com.mindvalley.personalgrowth.database.converter.MediaConverter
 import com.mindvalley.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.mindvalley.personalgrowth.database.dao.ChannelsDAO
 import com.mindvalley.personalgrowth.database.dao.NewEpisodesDAO

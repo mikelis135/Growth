@@ -5,7 +5,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mindvalley.personalgrowth.model.Category
 
-class CategoryConverter {
+class
+CategoryConverter {
 
     val gson = Gson()
 
@@ -22,7 +23,7 @@ class CategoryConverter {
         val type = object : TypeToken<Category>() {
 
         }.type
-        return gson.fromJson<Category>(categoryString, type)
+        return gson.fromJson(categoryString, type)
     }
 
 }

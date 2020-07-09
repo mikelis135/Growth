@@ -2,15 +2,15 @@ package com.mindvalley.personalgrowth.di
 
 import android.app.Application
 import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
+import com.mindvalley.personalgrowth.database.AppConstants
 import com.mindvalley.personalgrowth.database.AppDatabase
 import com.mindvalley.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.mindvalley.personalgrowth.database.dao.ChannelsDAO
 import com.mindvalley.personalgrowth.database.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
@@ -28,11 +28,10 @@ class TestDatabaseModule(private val application: Application) {
         return appDatabase.newEpisodesDao()
     }
 
-
-    @Provides
     @Singleton
-    fun providesRequestManager(): RequestManager {
-        return Glide.with(application.applicationContext)
+    @Provides
+    fun providesDispatcher(): CoroutineDispatcher {
+        return Dispatchers.IO
     }
 
     @Singleton
@@ -45,27 +44,27 @@ class TestDatabaseModule(private val application: Application) {
     @Provides
     fun providesDatabase(): AppDatabase {
 
-//        var appDatabase: AppDatabase? = null
-//
-//        val tempInstance = appDatabase
-//        if (tempInstance != null) {
-//            return tempInstance
-//        }
-//
-//        synchronized(this) {
-//            val instance = Room.databaseBuilder(
-//                application,
-//                AppDatabase::class.java,
-//                DBConstants.DATABASE_NAME
-//            ).fallbackToDestructiveMigration().build()
-//            appDatabase = instance
-//            return instance
-//        }
+        var appDatabase: AppDatabase? = null
 
-        return  Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            AppDatabase::class.java
-        ).build()
+        val tempInstance = appDatabase
+        if (tempInstance != null) {
+            return tempInstance
+        }
+
+        synchronized(this) {
+            val instance = Room.databaseBuilder(
+                application,
+                AppDatabase::class.java,
+                AppConstants.DATABASE_NAME
+            ).fallbackToDestructiveMigration().build()
+            appDatabase = instance
+            return instance
+        }
+
+//        return  Room.inMemoryDatabaseBuilder(
+//            application.applicationContext,
+//            AppDatabase::class.java
+//        ).build()
 
     }
 

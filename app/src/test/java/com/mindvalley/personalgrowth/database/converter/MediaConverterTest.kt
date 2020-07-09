@@ -5,10 +5,10 @@ import com.google.gson.reflect.TypeToken
 import com.mindvalley.personalgrowth.model.Course
 import com.mindvalley.personalgrowth.model.Media
 import org.hamcrest.CoreMatchers
-import org.junit.Assert
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 internal class MediaConverterTest {
 
@@ -27,8 +27,8 @@ internal class MediaConverterTest {
         val mediaString = gson.toJson(media, type)
 
         //Assert
-        Assert.assertThat(mediaString, CoreMatchers.containsString("Series"))
-        Assert.assertThat(mediaString, CoreMatchers.containsString("Mentoring"))
+        assertThat(mediaString, CoreMatchers.containsString("Series"))
+        assertThat(mediaString, CoreMatchers.containsString("Mentoring"))
 
     }
 
@@ -44,7 +44,7 @@ internal class MediaConverterTest {
         val mediaString = gson.toJson(media, type)
 
         //Assert
-        Assert.assertFalse(mediaString, mediaString.isNullOrBlank())
+        assertFalse(mediaString, mediaString.isNullOrBlank())
 
     }
 

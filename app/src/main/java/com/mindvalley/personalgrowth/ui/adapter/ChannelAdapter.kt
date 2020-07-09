@@ -83,7 +83,8 @@ class ChannelAdapter(
             channelTitle.text = channelItem.title
 
             channelItem.latestMedia?.size?.let {
-                channelCountTitle.text = context.resources.getQuantityString(R.plurals.episodes, it, it)
+                channelCountTitle.text =
+                    context.resources.getQuantityString(R.plurals.episodes, it, it)
             }
 
             Glide.with(context).load(channelItem.iconAsset?.thumbnailUrl)
@@ -112,7 +113,7 @@ class ChannelAdapter(
             channelTitle.text = channelItem.title
             channelItem.series?.size?.let {
                 channelCountTitle.text =
-                   context.resources.getQuantityString(R.plurals.series, it, it)
+                    context.resources.getQuantityString(R.plurals.series, it, it)
             }
 
             val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)

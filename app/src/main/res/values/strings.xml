@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Personal Growth</string>
+    <string name="app_name">Mindvalley</string>
     <plurals name="series">
         <item quantity="one">%d series</item>
         <item quantity="other">%d series</item>

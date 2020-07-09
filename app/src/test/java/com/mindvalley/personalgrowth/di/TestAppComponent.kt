@@ -10,5 +10,4 @@ import javax.inject.Singleton
 @Component(modules = [TestDatabaseModule::class, TestRemoteModule::class])
 interface TestAppComponent {
     fun inject(mainViewModelUnitTest: MainViewModelUnitTest)
-//    fun inject(mainRepositoryTest: MainRepositoryTest)
 }

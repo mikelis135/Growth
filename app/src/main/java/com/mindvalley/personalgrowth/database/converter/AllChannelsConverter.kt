@@ -23,7 +23,7 @@ class AllChannelsConverter {
         val type = object : TypeToken<AllChannels>() {
 
         }.type
-        return gson.fromJson<AllChannels>(allChannelsString, type)
+        return gson.fromJson(allChannelsString, type)
     }
 
 }

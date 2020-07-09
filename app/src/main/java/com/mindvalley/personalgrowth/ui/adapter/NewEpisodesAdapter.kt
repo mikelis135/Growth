@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.mindvalley.personalgrowth.R
 import com.mindvalley.personalgrowth.model.Course
 import kotlinx.android.synthetic.main.new_episodes_item.view.*
-import java.lang.Integer.min
+import kotlin.math.min
 
 class NewEpisodesAdapter(
     private val context: Context,

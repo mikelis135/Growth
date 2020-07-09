@@ -3,6 +3,7 @@ package com.mindvalley.personalgrowth.model
 data class NewEpisodesResponse(
     val data: Media?
 )
+
 data class Media(
     val media: List<Course>?
 )

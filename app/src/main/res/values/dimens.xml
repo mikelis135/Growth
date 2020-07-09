@@ -20,5 +20,7 @@
     <dimen name="categoryWidth">120dp</dimen>
     <dimen name="categoryHeight">60dp</dimen>
     <dimen name="categoryCornerRadius">30dp</dimen>
+    <dimen name="shimmerTitleHeight">5dp</dimen>
+    <dimen name="shimmerSubTitlePadding">10dp</dimen>
 
 </resources>
