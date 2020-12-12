@@ -1,6 +1,6 @@
-## Mindvalley ![alt text](icon.png)
+## Growth ![alt text](icon.png)
 
-Mindvalley is a beautiful tool for self improvement in one's capacity and realizing one's goals. As a mobile app, all it takes is a single tap from the phone
+Growth is a beautiful tool for self improvement in one's capacity and realizing one's goals. As a mobile app, all it takes is a single tap from the phone
 
 ## App at a glance (Click app photo below for video)
 - Splash Screen
