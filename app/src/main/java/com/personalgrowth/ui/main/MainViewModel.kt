@@ -1,6 +1,5 @@
 package com.personalgrowth.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,12 +23,11 @@ class MainViewModel @Inject constructor(
     var channelCategories: LiveData<ChannelCategory> = mainRepository.getLocalChannelCategories()
 
     var newEpisodesError: MutableLiveData<String> = MutableLiveData()
-
-
+    
     init {
-//        processNewEpisodes()
-//        processChannels()
-//        processCategories()
+        processNewEpisodes()
+        processChannels()
+        processCategories()
     }
 
     fun processNewEpisodes() {

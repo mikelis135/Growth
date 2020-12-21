@@ -1,12 +1,14 @@
 package com.personalgrowth.remote
 
 import com.personalgrowth.FakeData
-import com.personalgrowth.model.*
+import com.personalgrowth.model.ChannelCategoryResponse
+import com.personalgrowth.model.ChannelsResponse
+import com.personalgrowth.model.NewEpisodesResponse
 import javax.inject.Inject
 
-class FakeNetworkRepository @Inject constructor(): NetworkRepository {
+class FakeNetworkRepository @Inject constructor() : NetworkRepository {
 
-    companion object{
+    companion object {
         var failNetwork = false
     }
 

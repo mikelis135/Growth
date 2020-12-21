@@ -7,7 +7,7 @@ import com.personalgrowth.database.entity.NewEpisodes
 import com.personalgrowth.repository.newEpisodes.NewEpisodeLocal
 import javax.inject.Inject
 
-class FakeNewEpisodesLocal @Inject constructor(): NewEpisodeLocal {
+class FakeNewEpisodesLocal @Inject constructor() : NewEpisodeLocal {
 
     private var newEpisodesLocal = NewEpisodes(0, FakeData.newEpisodesData.data)
     private val newEpisodesLiveData = MutableLiveData<NewEpisodes>()

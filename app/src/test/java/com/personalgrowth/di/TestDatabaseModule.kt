@@ -1,15 +1,12 @@
 package com.personalgrowth.di
 
 import android.app.Application
-import androidx.room.Room
 import com.personalgrowth.database.AppDatabase
 import com.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.personalgrowth.database.dao.ChannelsDAO
 import com.personalgrowth.database.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
@@ -54,7 +51,6 @@ class TestDatabaseModule(private val application: Application) {
 //            appDatabase = instance
 //            return instance
 //        }
-
 
     }
 

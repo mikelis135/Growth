@@ -1,16 +1,11 @@
 package com.personalgrowth.repository.mainRepository
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.personalgrowth.CoroutineTestRule
 import com.personalgrowth.FakeData
 import com.personalgrowth.TestApp
-import com.personalgrowth.database.entity.ChannelCategory
 import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
 import org.junit.rules.TestRule
 import javax.inject.Inject

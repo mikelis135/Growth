@@ -20,7 +20,7 @@ class FakeMainRepository @Inject constructor() : MainRepository {
     private val newEpisodeLocal = mutableListOf(NewEpisodes(0, FakeData.newEpisodesData.data))
     private val channelLocal = mutableListOf(Channels(0, FakeData.channelData.data))
 
-    companion object{
+    companion object {
         var failNetwork = false
     }
 

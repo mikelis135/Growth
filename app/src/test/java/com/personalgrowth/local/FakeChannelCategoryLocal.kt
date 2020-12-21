@@ -5,11 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.personalgrowth.FakeData
 import com.personalgrowth.database.entity.ChannelCategory
 import com.personalgrowth.repository.channelCategory.ChannelCategoryLocal
-import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 
-class FakeChannelCategoryLocal @Inject constructor(): ChannelCategoryLocal {
+class FakeChannelCategoryLocal @Inject constructor() : ChannelCategoryLocal {
 
     private var channelCategoryLocal = ChannelCategory(0, FakeData.channelCategoryData.data)
     private val channelCategoryLiveData = MutableLiveData<ChannelCategory>()

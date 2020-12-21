@@ -7,7 +7,7 @@ import com.personalgrowth.database.entity.Channels
 import com.personalgrowth.repository.channel.ChannelsLocal
 import javax.inject.Inject
 
-class FakeChannelsLocal @Inject constructor(): ChannelsLocal {
+class FakeChannelsLocal @Inject constructor() : ChannelsLocal {
 
     private var channelLocal = Channels(0, FakeData.channelData.data)
     private val channelsLiveData = MutableLiveData<Channels>()
