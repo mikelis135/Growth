@@ -2,7 +2,6 @@ package com.personalgrowth.di
 
 import android.app.Application
 import androidx.room.Room
-import com.personalgrowth.database.AppConstants
 import com.personalgrowth.database.AppDatabase
 import com.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.personalgrowth.database.dao.ChannelsDAO
@@ -30,12 +29,6 @@ class TestDatabaseModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesDispatcher(): CoroutineDispatcher {
-        return Dispatchers.IO
-    }
-
-    @Singleton
-    @Provides
     fun providesChannelsDAO(appDatabase: AppDatabase): ChannelsDAO {
         return appDatabase.channelsDao()
     }
@@ -51,20 +44,17 @@ class TestDatabaseModule(private val application: Application) {
             return tempInstance
         }
 
-        synchronized(this) {
-            val instance = Room.databaseBuilder(
-                application,
-                AppDatabase::class.java,
-                AppConstants.DATABASE_NAME
-            ).fallbackToDestructiveMigration().build()
-            appDatabase = instance
-            return instance
-        }
+        return appDatabase!!
+//
+//        synchronized(this) {
+//            val instance = Room.inMemoryDatabaseBuilder(
+//                ApplicationProvider.getApplicationContext(),
+//                AppDatabase::class.java
+//            ).allowMainThreadQueries().build()
+//            appDatabase = instance
+//            return instance
+//        }
 
-//        return  Room.inMemoryDatabaseBuilder(
-//            application.applicationContext,
-//            AppDatabase::class.java
-//        ).build()
 
     }
 

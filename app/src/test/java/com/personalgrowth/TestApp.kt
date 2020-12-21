@@ -13,7 +13,6 @@ class TestApp : Application() {
         initialiseAppComponent()
     }
 
-
     private fun initialiseAppComponent(): TestAppComponent {
         val builder = DaggerTestAppComponent.builder()
         return builder.testDatabaseModule(TestDatabaseModule(this)).build()

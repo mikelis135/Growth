@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.personalgrowth.App
 import com.personalgrowth.R
 import com.personalgrowth.database.entity.ChannelCategory
 import com.personalgrowth.database.entity.Channels
@@ -15,7 +16,6 @@ import com.personalgrowth.database.entity.NewEpisodes
 import com.personalgrowth.ui.adapter.CategoriesAdapter
 import com.personalgrowth.ui.adapter.ChannelAdapter
 import com.personalgrowth.ui.adapter.NewEpisodesAdapter
-import com.personalgrowth.App
 import kotlinx.android.synthetic.main.channel_category_content.view.*
 import kotlinx.android.synthetic.main.channel_content.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
@@ -36,10 +36,10 @@ class MainFragment : Fragment() {
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var rootView: View
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity().application as App).appComponent.inject(this)
+
     }
 
     override fun onCreateView(

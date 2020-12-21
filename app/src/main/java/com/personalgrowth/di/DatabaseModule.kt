@@ -36,12 +36,6 @@ class DatabaseModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesDispatcher(): CoroutineDispatcher {
-        return Dispatchers.IO
-    }
-
-    @Singleton
-    @Provides
     fun providesDatabase(): AppDatabase {
 
         var appInstance: AppDatabase? = null

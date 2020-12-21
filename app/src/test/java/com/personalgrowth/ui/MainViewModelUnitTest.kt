@@ -2,12 +2,12 @@ package com.personalgrowth.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.personalgrowth.CoroutineTestRule
+import com.personalgrowth.FakeData
 import com.personalgrowth.TestApp
-import com.personalgrowth.database.entity.ChannelCategory
-import com.personalgrowth.database.entity.Channels
-import com.personalgrowth.repository.MainRepository
+import com.personalgrowth.getOrAwaitValue
+import com.personalgrowth.repository.FakeMainRepository
+import com.personalgrowth.repository.mainRepository.DefaultMainRepository
 import com.personalgrowth.ui.main.MainViewModel
-import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
@@ -28,108 +28,55 @@ class MainViewModelUnitTest {
     val testCoroutineRule = CoroutineTestRule()
 
     @Inject
-    lateinit var viewModel: MainViewModel
+    lateinit var defaultMainRepository: DefaultMainRepository
 
     @Inject
-    lateinit var mainRepository: MainRepository
+    lateinit var fakeMainRepository: FakeMainRepository
+
+    @Inject
+    lateinit var viewModel: MainViewModel
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
         TestApp().testAppComponent.inject(this)
-
     }
-
-    private val errorMessage = "pastebin.com"
 
     @Test
     fun onSuccess_processCategoriesNetworkCalled() = runBlockingTest {
-        val callback: (ChannelCategory) -> Unit = mock()
+
+        FakeMainRepository.failNetwork = false
 
         viewModel.processCategories()
 
-        mainRepository.getCategories({
-            assertEquals(callback, it)
-        }, {
+        assertEquals(
+            FakeData.channelCategoryData.data,
+            viewModel.channelCategories.getOrAwaitValue().data
+        )
 
-        })
-
-    }
-
-    @Test
-    fun onError_processCategoriesNetworkCalled() = runBlockingTest {
-
-        val error: (String) -> Unit = mock()
-
-        viewModel.processCategories()
-
-        mainRepository.getCategories({
-
-        }, {
-
-            assertEquals(errorMessage, it)
-            assertEquals(error, it)
-        })
-
-    }
-
-    @Test
-    fun onSuccess_processNewEpisodesNetworkCalled() = runBlockingTest {
-        val callback: (ChannelCategory) -> Unit = mock()
-
-        viewModel.processNewEpisodes()
-
-        mainRepository.getNewEpisodes({
-            assertEquals(callback, it)
-        }, {
-
-        })
-    }
-
-    @Test
-    fun onError_processNewEpisodesNetworkCalled() = runBlockingTest {
-
-        val error: (String) -> Unit = mock()
-
-        viewModel.processNewEpisodes()
-
-        mainRepository.getNewEpisodes({
-
-        }, {
-            assertEquals(errorMessage, it)
-            assertEquals(error, it)
-
-        })
+        println(viewModel.channelCategories.getOrAwaitValue().data.toString())
 
     }
 
     @Test
     fun onSuccess_processChannelsNetworkCalled() = runBlockingTest {
 
-        val callback: (Channels) -> Unit = mock()
+        FakeMainRepository.failNetwork = false
 
         viewModel.processChannels()
 
-        mainRepository.getChannels({
-            assertEquals(callback, it)
-        }, {
+        assertEquals(FakeData.channelData.data, viewModel.channels.getOrAwaitValue().data)
 
-        })
     }
 
     @Test
-    fun onError_processChannelsNetworkCalled() = runBlockingTest {
+    fun onError_processNewEpisodesNetworkCalled() = runBlockingTest {
 
-        val error: (String) -> Unit = mock()
+        FakeMainRepository.failNetwork = true
 
-        viewModel.processChannels()
+        viewModel.processNewEpisodes()
 
-        mainRepository.getChannels({
-
-        }, {
-            assertEquals(errorMessage, it)
-            assertEquals(error, it)
-        })
+        assertEquals(viewModel.newEpisodesError.getOrAwaitValue(), FakeData.errorMessage)
 
     }
 
