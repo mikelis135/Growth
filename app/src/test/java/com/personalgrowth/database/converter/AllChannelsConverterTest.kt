@@ -27,7 +27,7 @@ internal class AllChannelsConverterTest {
         val channelsString = gson.toJson(channelsSent, type)
 
         //Assert
-        assertThat(channelsString, CoreMatchers.containsString("Mindvalleys"))
+        assertThat(channelsString, CoreMatchers.containsString("Mindvalley"))
         assertThat(channelsString, CoreMatchers.containsString("10"))
 
     }
