@@ -7,21 +7,22 @@ import androidx.lifecycle.viewModelScope
 import com.personalgrowth.database.entity.ChannelCategory
 import com.personalgrowth.database.entity.Channels
 import com.personalgrowth.database.entity.NewEpisodes
-import com.personalgrowth.repository.MainRepository
+import com.personalgrowth.repository.mainRepository.MainRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
-    private val coroutineDispatcher: CoroutineDispatcher
+    private val coroutineDispatcher: CoroutineDispatcher,
+    private val mainRepository: MainRepository
 ) :
     ViewModel() {
 
+    var newEpisodes: LiveData<NewEpisodes> = mainRepository.getLocalNewEpisodes()
+    var channels: LiveData<Channels> = mainRepository.getLocalChannels()
+    var channelCategories: LiveData<ChannelCategory> = mainRepository.getLocalChannelCategories()
 
-    var newEpisodes: LiveData<NewEpisodes> = mainRepository.newEpisodes
-    var channels: LiveData<Channels> = mainRepository.channels
-    var channelCategories: LiveData<ChannelCategory> = mainRepository.channelCategories
+    //testing yaml
 
     var newEpisodesError: MutableLiveData<String> = MutableLiveData()
 
@@ -76,7 +77,6 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             mainRepository.getCategories({
                 saveCategories(it, coroutineDispatcher)
-
             }, {}
             )
         }

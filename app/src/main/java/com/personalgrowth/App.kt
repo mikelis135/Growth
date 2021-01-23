@@ -14,6 +14,6 @@ class App : Application() {
     private fun initialiseAppComponent(): AppComponent {
         val builder = DaggerAppComponent.builder()
         return builder.databaseModule(DatabaseModule(this)).build()
-
     }
+
 }

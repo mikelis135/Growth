@@ -9,8 +9,6 @@ import com.personalgrowth.database.dao.ChannelsDAO
 import com.personalgrowth.database.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
@@ -32,12 +30,6 @@ class DatabaseModule(private val application: Application) {
     @Provides
     fun providesChannelsDAO(appDatabase: AppDatabase): ChannelsDAO {
         return appDatabase.channelsDao()
-    }
-
-    @Singleton
-    @Provides
-    fun providesDispatcher(): CoroutineDispatcher {
-        return Dispatchers.IO
     }
 
     @Singleton
