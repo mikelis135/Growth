@@ -1,6 +1,9 @@
 package com.personalgrowth.di
 
 import com.google.gson.Gson
+import com.personalgrowth.data.channel.DefaultChannelsLocal
+import com.personalgrowth.data.channelCategory.DefaultChannelCategoryLocal
+import com.personalgrowth.data.newEpisodes.DefaultNewEpisodeLocal
 import com.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.personalgrowth.database.dao.ChannelsDAO
 import com.personalgrowth.database.dao.NewEpisodesDAO
@@ -10,11 +13,8 @@ import com.personalgrowth.local.FakeNewEpisodesLocal
 import com.personalgrowth.remote.ApiService
 import com.personalgrowth.remote.FakeNetworkRepository
 import com.personalgrowth.repository.FakeMainRepository
-import com.personalgrowth.repository.channel.DefaultChannelsLocal
-import com.personalgrowth.repository.channelCategory.DefaultChannelCategoryLocal
 import com.personalgrowth.repository.mainRepository.DefaultMainRepository
 import com.personalgrowth.repository.mainRepository.MainRepository
-import com.personalgrowth.repository.newEpisodes.DefaultNewEpisodeLocal
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

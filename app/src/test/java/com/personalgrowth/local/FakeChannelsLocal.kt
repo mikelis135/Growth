@@ -3,8 +3,8 @@ package com.personalgrowth.local
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.personalgrowth.FakeData
+import com.personalgrowth.data.channel.ChannelsLocal
 import com.personalgrowth.database.entity.Channels
-import com.personalgrowth.repository.channel.ChannelsLocal
 import javax.inject.Inject
 
 class FakeChannelsLocal @Inject constructor() : ChannelsLocal {

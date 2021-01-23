@@ -1,4 +1,4 @@
-package com.personalgrowth.repository.newEpisodes
+package com.personalgrowth.data.newEpisodes
 
 import androidx.lifecycle.LiveData
 import com.personalgrowth.database.entity.NewEpisodes

@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
     var channelCategories: LiveData<ChannelCategory> = mainRepository.getLocalChannelCategories()
 
     var newEpisodesError: MutableLiveData<String> = MutableLiveData()
-    
+
     init {
         processNewEpisodes()
         processChannels()

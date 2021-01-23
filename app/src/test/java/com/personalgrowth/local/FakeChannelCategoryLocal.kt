@@ -3,8 +3,8 @@ package com.personalgrowth.local
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.personalgrowth.FakeData
+import com.personalgrowth.data.channelCategory.ChannelCategoryLocal
 import com.personalgrowth.database.entity.ChannelCategory
-import com.personalgrowth.repository.channelCategory.ChannelCategoryLocal
 import javax.inject.Inject
 
 

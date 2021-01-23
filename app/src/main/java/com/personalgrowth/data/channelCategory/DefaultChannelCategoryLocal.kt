@@ -1,4 +1,4 @@
-package com.personalgrowth.repository.channelCategory
+package com.personalgrowth.data.channelCategory
 
 import androidx.lifecycle.LiveData
 import com.personalgrowth.database.dao.ChannelCategoriesDAO

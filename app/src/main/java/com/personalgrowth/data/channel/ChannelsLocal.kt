@@ -1,4 +1,4 @@
-package com.personalgrowth.repository.channel
+package com.personalgrowth.data.channel
 
 import androidx.lifecycle.LiveData
 import com.personalgrowth.database.entity.Channels

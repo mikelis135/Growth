@@ -1,13 +1,13 @@
 package com.personalgrowth.repository.mainRepository
 
 import androidx.lifecycle.LiveData
+import com.personalgrowth.data.channel.ChannelsLocal
+import com.personalgrowth.data.channelCategory.ChannelCategoryLocal
+import com.personalgrowth.data.newEpisodes.NewEpisodeLocal
 import com.personalgrowth.database.entity.ChannelCategory
 import com.personalgrowth.database.entity.Channels
 import com.personalgrowth.database.entity.NewEpisodes
 import com.personalgrowth.remote.NetworkRepository
-import com.personalgrowth.repository.channel.ChannelsLocal
-import com.personalgrowth.repository.channelCategory.ChannelCategoryLocal
-import com.personalgrowth.repository.newEpisodes.NewEpisodeLocal
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch

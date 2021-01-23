@@ -3,8 +3,8 @@ package com.personalgrowth.local
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.personalgrowth.FakeData
+import com.personalgrowth.data.newEpisodes.NewEpisodeLocal
 import com.personalgrowth.database.entity.NewEpisodes
-import com.personalgrowth.repository.newEpisodes.NewEpisodeLocal
 import javax.inject.Inject
 
 class FakeNewEpisodesLocal @Inject constructor() : NewEpisodeLocal {
