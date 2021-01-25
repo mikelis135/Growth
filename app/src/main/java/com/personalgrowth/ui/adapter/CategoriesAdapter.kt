@@ -5,16 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.personalgrowth.R
 import com.personalgrowth.model.CategoryNames
 import kotlinx.android.synthetic.main.channel_category_item.view.*
 
 class CategoriesAdapter(
-    private val context: Context,
-    private var categoryList: List<CategoryNames>
-) :
-    RecyclerView.Adapter<CategoriesAdapter.EpisodeViewHolder>() {
+    private val context: Context
+) : ListAdapter<CategoryNames, CategoriesAdapter.EpisodeViewHolder>(CategoryNamesItemDiffCallback()) {
+
+    class CategoryNamesItemDiffCallback : DiffUtil.ItemCallback<CategoryNames>() {
+        override fun areItemsTheSame(oldItem: CategoryNames, newItem: CategoryNames): Boolean =
+            oldItem == newItem
+
+        override fun areContentsTheSame(oldItem: CategoryNames, newItem: CategoryNames): Boolean =
+            oldItem == newItem
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,16 +39,11 @@ class CategoriesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return categoryList.size
+        return currentList.size
     }
 
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
-        holder.bind(categoryList[position])
-    }
-
-    fun setItems(categoryNamesList: List<CategoryNames>) {
-        this.categoryList = categoryNamesList
-        notifyDataSetChanged()
+        holder.bind(currentList[position])
     }
 
     class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

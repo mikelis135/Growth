@@ -49,13 +49,13 @@ class MainFragment : Fragment() {
 
         rootView = inflater.inflate(R.layout.main_fragment, container, false)
 
-        newEpisodesAdapter = NewEpisodesAdapter(requireContext(), emptyList())
+        newEpisodesAdapter = NewEpisodesAdapter(requireContext())
         rootView.newEpisodesRcl.adapter = newEpisodesAdapter
 
-        channelAdapter = ChannelAdapter(requireContext(), emptyList())
+        channelAdapter = ChannelAdapter(requireContext())
         rootView.channelRcl.adapter = channelAdapter
 
-        categoriesAdapter = CategoriesAdapter(requireContext(), emptyList())
+        categoriesAdapter = CategoriesAdapter(requireContext())
         rootView.channelCategoryRcl.adapter = categoriesAdapter
 
         rootView.refreshSrl.setOnRefreshListener {
@@ -77,7 +77,7 @@ class MainFragment : Fragment() {
 
             it?.data?.media?.let { courseList ->
 
-                newEpisodesAdapter.setItems(courseList)
+                newEpisodesAdapter.submitList(courseList)
 
                 rootView.refreshSrl.isRefreshing = false
                 rootView.shimmerEpisode.visibility = View.GONE
@@ -94,7 +94,7 @@ class MainFragment : Fragment() {
 
             it?.data?.channels?.let { channelItemList ->
 
-                channelAdapter.setItems(channelItemList)
+                channelAdapter.submitList(channelItemList)
 
                 rootView.refreshSrl.isRefreshing = false
                 rootView.shimmerChannel.visibility = View.GONE
@@ -111,7 +111,7 @@ class MainFragment : Fragment() {
 
             it?.data?.categories?.let { categoryNamesList ->
 
-                categoriesAdapter.setItems(categoryNamesList)
+                categoriesAdapter.submitList(categoryNamesList)
 
                 rootView.refreshSrl.isRefreshing = false
                 rootView.shimmerChannelCategory.visibility = View.GONE

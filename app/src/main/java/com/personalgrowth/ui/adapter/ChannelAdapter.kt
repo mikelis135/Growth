@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -17,13 +19,20 @@ import kotlinx.android.synthetic.main.channel_course_list.view.*
 import kotlinx.android.synthetic.main.channel_series_list.view.*
 
 class ChannelAdapter(
-    private val context: Context,
-    private var channelList: List<ChannelItem>
+    private val context: Context
 ) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    ListAdapter<ChannelItem, RecyclerView.ViewHolder>(ChannelItemDiffCallback()) {
 
     private val channelCourse = 1
     private val channelSeries = 2
+
+    class ChannelItemDiffCallback : DiffUtil.ItemCallback<ChannelItem>() {
+        override fun areItemsTheSame(oldItem: ChannelItem, newItem: ChannelItem): Boolean =
+            oldItem == newItem
+
+        override fun areContentsTheSame(oldItem: ChannelItem, newItem: ChannelItem): Boolean =
+            oldItem == newItem
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -52,7 +61,7 @@ class ChannelAdapter(
 
     override fun getItemViewType(position: Int): Int {
 
-        return if (channelList[position].series.isNullOrEmpty()) {
+        return if (currentList[position].series.isNullOrEmpty()) {
             channelCourse
         } else {
             channelSeries
@@ -60,20 +69,15 @@ class ChannelAdapter(
     }
 
     override fun getItemCount(): Int {
-        return channelList.size
+        return currentList.size
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (holder.itemViewType) {
-            channelCourse -> (holder as CourseViewHolder).bind(channelList[position], context)
-            channelSeries -> (holder as SeriesViewHolder).bind(channelList[position], context)
+            channelCourse -> (holder as CourseViewHolder).bind(currentList[position], context)
+            channelSeries -> (holder as SeriesViewHolder).bind(currentList[position], context)
         }
-    }
-
-    fun setItems(channelItemList: List<ChannelItem>) {
-        this.channelList = channelItemList
-        notifyDataSetChanged()
     }
 
     class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
