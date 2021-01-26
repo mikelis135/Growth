@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -15,10 +17,17 @@ import kotlinx.android.synthetic.main.new_episodes_item.view.*
 import kotlin.math.min
 
 class NewEpisodesAdapter(
-    private val context: Context,
-    private var episodeList: List<Course>
+    private val context: Context
 ) :
-    RecyclerView.Adapter<NewEpisodesAdapter.EpisodeViewHolder>() {
+    ListAdapter<Course, NewEpisodesAdapter.EpisodeViewHolder>(CourseDiffCallback()) {
+
+    class CourseDiffCallback : DiffUtil.ItemCallback<Course>() {
+        override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean =
+            oldItem == newItem
+
+        override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean =
+            oldItem == newItem
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,16 +44,11 @@ class NewEpisodesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return min(episodeList.size, 6)
+        return min(currentList.size, 6)
     }
 
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
-        holder.bind(episodeList[position], context)
-    }
-
-    fun setItems(courseList: List<Course>) {
-        this.episodeList = courseList
-        notifyDataSetChanged()
+        holder.bind(currentList[position], context)
     }
 
     inner class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
