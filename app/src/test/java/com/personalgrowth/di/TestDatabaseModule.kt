@@ -1,16 +1,18 @@
 package com.personalgrowth.di
 
-import android.app.Application
 import com.personalgrowth.database.AppDatabase
 import com.personalgrowth.database.dao.ChannelCategoriesDAO
 import com.personalgrowth.database.dao.ChannelsDAO
 import com.personalgrowth.database.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import javax.inject.Singleton
 
 @Module
-class TestDatabaseModule(private val application: Application) {
+@TestInstallIn(components = [SingletonComponent::class], replaces = [DatabaseModule::class])
+class TestDatabaseModule {
 
     @Singleton
     @Provides

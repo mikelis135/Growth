@@ -1,62 +1,51 @@
 package com.personalgrowth.ui.main
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
-import com.personalgrowth.App
 import com.personalgrowth.R
 import com.personalgrowth.database.entity.ChannelCategory
 import com.personalgrowth.database.entity.Channels
 import com.personalgrowth.database.entity.NewEpisodes
+import com.personalgrowth.databinding.MainFragmentBinding
 import com.personalgrowth.ui.adapter.CategoriesAdapter
 import com.personalgrowth.ui.adapter.ChannelAdapter
 import com.personalgrowth.ui.adapter.NewEpisodesAdapter
-import kotlinx.android.synthetic.main.channel_category_content.view.*
-import kotlinx.android.synthetic.main.channel_content.view.*
-import kotlinx.android.synthetic.main.main_fragment.view.*
-import kotlinx.android.synthetic.main.shimmer_category_content.view.*
-import kotlinx.android.synthetic.main.shimmer_channel_content.view.*
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
+    private val viewModel: MainViewModel by viewModels()
 
-    @Inject
-    lateinit var viewModel: MainViewModel
     private lateinit var newEpisodesAdapter: NewEpisodesAdapter
     private lateinit var channelAdapter: ChannelAdapter
     private lateinit var categoriesAdapter: CategoriesAdapter
-    private lateinit var rootView: View
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (requireActivity().application as App).appComponent.inject(this)
-
-    }
+    private lateinit var rootView: MainFragmentBinding
+    private var mainFragmentBinding: MainFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        rootView = inflater.inflate(R.layout.main_fragment, container, false)
+        rootView = MainFragmentBinding.inflate(inflater, container, false)
 
-        newEpisodesAdapter = NewEpisodesAdapter(requireContext())
-        rootView.newEpisodesRcl.adapter = newEpisodesAdapter
+        mainFragmentBinding = rootView
 
-        channelAdapter = ChannelAdapter(requireContext())
-        rootView.channelRcl.adapter = channelAdapter
+        newEpisodesAdapter = NewEpisodesAdapter()
+        rootView.channelContent.newEpisodesRcl.adapter = newEpisodesAdapter
 
-        categoriesAdapter = CategoriesAdapter(requireContext())
-        rootView.channelCategoryRcl.adapter = categoriesAdapter
+        channelAdapter = ChannelAdapter()
+        rootView.channelContent.channelRcl.adapter = channelAdapter
+
+        categoriesAdapter = CategoriesAdapter()
+        rootView.channelCategoryContent.channelCategoryRcl.adapter = categoriesAdapter
 
         rootView.refreshSrl.setOnRefreshListener {
             viewModel.processNewEpisodes()
@@ -64,14 +53,13 @@ class MainFragment : Fragment() {
             viewModel.processCategories()
         }
 
-        return rootView
+        return rootView.root
     }
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        viewModel.newEpisodes.observe(this, Observer {
+        viewModel.newEpisodes.observe(viewLifecycleOwner) {
 
             emptyEpisodes(it)
 
@@ -80,15 +68,15 @@ class MainFragment : Fragment() {
                 newEpisodesAdapter.submitList(courseList)
 
                 rootView.refreshSrl.isRefreshing = false
-                rootView.shimmerEpisode.visibility = View.GONE
-                rootView.browseShimmerCategoryTxt.visibility = View.GONE
-                rootView.shimmerChannelContent.visibility = View.VISIBLE
-                rootView.browseCategoryTxt.visibility = View.VISIBLE
+                rootView.shimmerChannelContent.shimmerEpisode.isVisible = false
+                rootView.browseShimmerCategoryTxt.isVisible = false
+                rootView.shimmerChannelContent.root.isVisible = true
+                rootView.browseCategoryTxt.isVisible = true
 
             }
-        })
+        }
 
-        viewModel.channels.observe(this, Observer {
+        viewModel.channels.observe(viewLifecycleOwner) {
 
             emptyChannel(it)
 
@@ -97,15 +85,15 @@ class MainFragment : Fragment() {
                 channelAdapter.submitList(channelItemList)
 
                 rootView.refreshSrl.isRefreshing = false
-                rootView.shimmerChannel.visibility = View.GONE
-                rootView.browseShimmerCategoryTxt.visibility = View.GONE
-                rootView.channelContent.visibility = View.VISIBLE
-                rootView.browseCategoryTxt.visibility = View.VISIBLE
+                rootView.shimmerChannelContent.shimmerChannel.isVisible = false
+                rootView.browseShimmerCategoryTxt.isVisible = false
+                rootView.channelContent.root.isVisible = true
+                rootView.browseCategoryTxt.isVisible = true
 
             }
-        })
+        }
 
-        viewModel.channelCategories.observe(this, Observer {
+        viewModel.channelCategories.observe(viewLifecycleOwner) {
 
             emptyChannelCategory(it)
 
@@ -114,58 +102,57 @@ class MainFragment : Fragment() {
                 categoriesAdapter.submitList(categoryNamesList)
 
                 rootView.refreshSrl.isRefreshing = false
-                rootView.shimmerChannelCategory.visibility = View.GONE
-                rootView.browseShimmerCategoryTxt.visibility = View.GONE
-                rootView.channelCategoryContent.visibility = View.VISIBLE
-                rootView.browseCategoryTxt.visibility = View.VISIBLE
+                rootView.shimmerChannelCategoryContent.shimmerChannelCategory.isVisible = false
+                rootView.browseShimmerCategoryTxt.isVisible = false
+                rootView.channelCategoryContent.root.isVisible = true
+                rootView.browseCategoryTxt.isVisible = true
 
             }
-        })
+        }
 
-        viewModel.newEpisodesError.observe(this, Observer {
+        viewModel.newEpisodesErrorLD.observe(viewLifecycleOwner) {
 
             it?.let {
                 rootView.refreshSrl.isRefreshing = false
                 Snackbar.make(
                     rootView.contentNsv,
-                    "Unstable internet? Pull to refresh",
+                    getString(R.string.unstable_internet_message),
                     Snackbar.LENGTH_LONG
                 ).show()
             }
 
-        })
+        }
 
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun emptyChannelCategory(it: ChannelCategory?) {
         if (it == null) {
-            rootView.shimmerChannelCategoryContent.visibility = View.VISIBLE
-            rootView.browseShimmerCategoryTxt.visibility = View.VISIBLE
-            rootView.shimmerChannelCategory.startShimmer()
+            rootView.shimmerChannelCategoryContent.root.isVisible = true
+            rootView.browseShimmerCategoryTxt.isVisible = true
+            rootView.shimmerChannelCategoryContent.shimmerChannelCategory.startShimmer()
         }
     }
 
     private fun emptyEpisodes(it: NewEpisodes?) {
         if (it == null) {
-            rootView.shimmerChannelContent.visibility = View.VISIBLE
-            rootView.browseShimmerCategoryTxt.visibility = View.VISIBLE
-            rootView.shimmerEpisode.startShimmer()
+            rootView.shimmerChannelContent.root.isVisible = true
+            rootView.browseShimmerCategoryTxt.isVisible = true
+            rootView.shimmerChannelContent.shimmerEpisode.startShimmer()
         }
-    }
-
-    private fun channelViews() {
-        rootView.shimmerChannel.visibility = View.GONE
-        rootView.browseShimmerCategoryTxt.visibility = View.GONE
-        rootView.channelContent.visibility = View.VISIBLE
-        rootView.browseCategoryTxt.visibility = View.VISIBLE
     }
 
     private fun emptyChannel(it: Channels?) {
         if (it == null) {
-            rootView.shimmerChannelContent.visibility = View.VISIBLE
-            rootView.browseShimmerCategoryTxt.visibility = View.VISIBLE
-            rootView.shimmerChannel.startShimmer()
+            rootView.shimmerChannelContent.root.isVisible = true
+            rootView.browseShimmerCategoryTxt.isVisible = true
+            rootView.shimmerChannelContent.shimmerChannel.startShimmer()
         }
+    }
+
+    override fun onDestroyView() {
+        mainFragmentBinding = null
+        super.onDestroyView()
     }
 
 }

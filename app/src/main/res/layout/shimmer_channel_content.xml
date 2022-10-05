@@ -34,7 +34,7 @@
                     android:layout_height="match_parent">
 
                     <include
-                        android:id="@+id/episode1"
+                        android:id="@+id/newEpisode1"
                         layout="@layout/shimmer_new_episode_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -42,19 +42,19 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
-                        android:id="@+id/episode2"
+                        android:id="@+id/newEpisode2"
                         layout="@layout/shimmer_new_episode_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/episode1"
+                        app:layout_constraintStart_toEndOf="@id/newEpisode1"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
-                        android:id="@+id/episode3"
+                        android:id="@+id/newEpisode3"
                         layout="@layout/shimmer_new_episode_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/episode2"
+                        app:layout_constraintStart_toEndOf="@id/newEpisode2"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -89,7 +89,7 @@
                     android:layout_height="match_parent">
 
                     <include
-                        android:id="@+id/episode1"
+                        android:id="@+id/channelEpisode1"
                         layout="@layout/shimmer_series_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -97,11 +97,11 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
-                        android:id="@+id/episode2"
+                        android:id="@+id/channelEpisode2"
                         layout="@layout/shimmer_series_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/episode1"
+                        app:layout_constraintStart_toEndOf="@id/channelEpisode1"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
@@ -109,7 +109,7 @@
                         layout="@layout/shimmer_series_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintStart_toEndOf="@id/episode2"
+                        app:layout_constraintStart_toEndOf="@id/channelEpisode2"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

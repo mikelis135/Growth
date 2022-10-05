@@ -17,4 +17,5 @@
     <string name="new_episodes">New Episodes</string>
     <string name="browse_categories">Browse by categories</string>
     <string name="welcome">Welcome</string>
+    <string name="unstable_internet_message">Unstable internet? Pull to refresh</string>
 </resources>

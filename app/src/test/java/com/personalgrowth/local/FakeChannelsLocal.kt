@@ -14,12 +14,12 @@ class FakeChannelsLocal @Inject constructor() : ChannelsLocal {
 
     override suspend fun saveChannels(channels: Channels) {
         channelLocal = channels
-        channelsLiveData.value = channels
+        channelsLiveData.postValue(channels)
     }
 
     override suspend fun updateChannels(channels: Channels) {
         channelLocal = channels
-        channelsLiveData.value = channels
+        channelsLiveData.postValue(channels)
     }
 
     override fun getChannels(): LiveData<Channels> = channelsLiveData

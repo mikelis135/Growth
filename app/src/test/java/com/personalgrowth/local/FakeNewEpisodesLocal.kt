@@ -14,12 +14,12 @@ class FakeNewEpisodesLocal @Inject constructor() : NewEpisodeLocal {
 
     override suspend fun saveNewEpisodes(newEpisodes: NewEpisodes) {
         newEpisodesLocal = newEpisodes
-        newEpisodesLiveData.value = newEpisodes
+        newEpisodesLiveData.postValue(newEpisodes)
     }
 
     override suspend fun updateNewEpisodes(newEpisodes: NewEpisodes) {
         newEpisodesLocal = newEpisodes
-        newEpisodesLiveData.value = newEpisodes
+        newEpisodesLiveData.postValue(newEpisodes)
     }
 
     override fun getNewEpisodes(): LiveData<NewEpisodes> = newEpisodesLiveData

@@ -2,18 +2,19 @@ package com.personalgrowth.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.personalgrowth.R
+import com.personalgrowth.databinding.MainActivityBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    lateinit var mainView: MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.main_activity)
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, MainFragment.newInstance())
-            .commit()
+        mainView = MainActivityBinding.inflate(layoutInflater)
+        setContentView(mainView.root)
 
     }
 }

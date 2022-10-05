@@ -1,6 +1,6 @@
 package com.personalgrowth.di
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.personalgrowth.database.AppConstants
 import com.personalgrowth.database.AppDatabase
@@ -9,10 +9,14 @@ import com.personalgrowth.database.dao.ChannelsDAO
 import com.personalgrowth.database.dao.NewEpisodesDAO
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule(private val application: Application) {
+@InstallIn(SingletonComponent::class)
+class DatabaseModule {
 
     @Singleton
     @Provides
@@ -34,7 +38,7 @@ class DatabaseModule(private val application: Application) {
 
     @Singleton
     @Provides
-    fun providesDatabase(): AppDatabase {
+    fun providesDatabase(@ApplicationContext context: Context): AppDatabase {
 
         var appInstance: AppDatabase? = null
 
@@ -45,7 +49,7 @@ class DatabaseModule(private val application: Application) {
 
         synchronized(this) {
             val instance = Room.databaseBuilder(
-                application,
+                context,
                 AppDatabase::class.java,
                 AppConstants.DATABASE_NAME
             ).fallbackToDestructiveMigration().build()

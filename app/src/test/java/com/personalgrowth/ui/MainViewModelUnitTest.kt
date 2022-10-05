@@ -1,45 +1,52 @@
 package com.personalgrowth.ui
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import android.os.Looper
 import com.personalgrowth.CoroutineTestRule
 import com.personalgrowth.FakeData
-import com.personalgrowth.TestApp
 import com.personalgrowth.getOrAwaitValue
 import com.personalgrowth.repository.FakeMainRepository
-import com.personalgrowth.repository.mainRepository.DefaultMainRepository
 import com.personalgrowth.ui.main.MainViewModel
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestRule
-import org.mockito.MockitoAnnotations
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.LooperMode
 import javax.inject.Inject
 
+@HiltAndroidTest
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [25], application = HiltTestApplication::class)
 @ExperimentalCoroutinesApi
+@LooperMode(LooperMode.Mode.PAUSED)
 class MainViewModelUnitTest {
 
     @get:Rule
-    val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
+    val hiltRule = HiltAndroidRule(this)
 
+    @ExperimentalCoroutinesApi
     @get:Rule
-    val testCoroutineRule = CoroutineTestRule()
-
-    @Inject
-    lateinit var defaultMainRepository: DefaultMainRepository
+    var mainCoroutineRule = CoroutineTestRule()
 
     @Inject
     lateinit var fakeMainRepository: FakeMainRepository
 
-    @Inject
+    @Mock
     lateinit var viewModel: MainViewModel
 
     @Before
     fun setUp() {
-        MockitoAnnotations.initMocks(this)
-        TestApp().testAppComponent.inject(this)
+        hiltRule.inject()
+        viewModel = MainViewModel(mainCoroutineRule.dispatcher, mainRepository = fakeMainRepository)
     }
 
     @Test
@@ -49,12 +56,12 @@ class MainViewModelUnitTest {
 
         viewModel.processCategories()
 
+        Shadows.shadowOf(Looper.getMainLooper()).idle()
+
         assertEquals(
             FakeData.channelCategoryData.data,
             viewModel.channelCategories.getOrAwaitValue().data
         )
-
-        println(viewModel.channelCategories.getOrAwaitValue().data.toString())
 
     }
 
@@ -64,6 +71,8 @@ class MainViewModelUnitTest {
         FakeMainRepository.failNetwork = false
 
         viewModel.processChannels()
+
+        Shadows.shadowOf(Looper.getMainLooper()).idle()
 
         assertEquals(FakeData.channelData.data, viewModel.channels.getOrAwaitValue().data)
 
@@ -76,7 +85,9 @@ class MainViewModelUnitTest {
 
         viewModel.processNewEpisodes()
 
-        assertEquals(viewModel.newEpisodesError.getOrAwaitValue(), FakeData.errorMessage)
+        Shadows.shadowOf(Looper.getMainLooper()).idle()
+
+        assertEquals(FakeData.errorMessage, viewModel.newEpisodesErrorLD.value)
 
     }
 

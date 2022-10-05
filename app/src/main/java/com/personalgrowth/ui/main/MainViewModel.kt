@@ -8,10 +8,12 @@ import com.personalgrowth.database.entity.ChannelCategory
 import com.personalgrowth.database.entity.Channels
 import com.personalgrowth.database.entity.NewEpisodes
 import com.personalgrowth.repository.mainRepository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val coroutineDispatcher: CoroutineDispatcher,
     private val mainRepository: MainRepository
@@ -23,6 +25,7 @@ class MainViewModel @Inject constructor(
     var channelCategories: LiveData<ChannelCategory> = mainRepository.getLocalChannelCategories()
 
     var newEpisodesError: MutableLiveData<String> = MutableLiveData()
+    var newEpisodesErrorLD: LiveData<String> = newEpisodesError
 
     init {
         processNewEpisodes()
