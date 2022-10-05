@@ -14,14 +14,13 @@ class FakeChannelCategoryLocal @Inject constructor() : ChannelCategoryLocal {
     private val channelCategoryLiveData = MutableLiveData<ChannelCategory>()
 
     override suspend fun saveCategories(channelCategory: ChannelCategory) {
-
         channelCategoryLocal = channelCategory
-        channelCategoryLiveData.value = channelCategory
+        channelCategoryLiveData.postValue(channelCategory)
     }
 
     override suspend fun updateCategories(channelCategory: ChannelCategory) {
         channelCategoryLocal = channelCategory
-        channelCategoryLiveData.value = channelCategory
+        channelCategoryLiveData.postValue(channelCategory)
     }
 
     override fun getCategories(): LiveData<ChannelCategory> = channelCategoryLiveData

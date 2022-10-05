@@ -2,7 +2,6 @@ package com.personalgrowth.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,19 +10,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.personalgrowth.R
+import com.personalgrowth.databinding.NewEpisodesItemBinding
 import com.personalgrowth.model.Course
-import kotlinx.android.synthetic.main.new_episodes_item.view.*
 import kotlin.math.min
 
-class NewEpisodesAdapter(
-    private val context: Context
-) :
+class NewEpisodesAdapter :
     ListAdapter<Course, NewEpisodesAdapter.EpisodeViewHolder>(CourseDiffCallback()) {
 
     class CourseDiffCallback : DiffUtil.ItemCallback<Course>() {
         override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean =
-            oldItem == newItem
+            oldItem.title == newItem.title
 
         override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean =
             oldItem == newItem
@@ -35,8 +31,8 @@ class NewEpisodesAdapter(
     ): EpisodeViewHolder {
 
         return EpisodeViewHolder(
-            LayoutInflater.from(context).inflate(
-                R.layout.new_episodes_item,
+            NewEpisodesItemBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
                 false
             )
@@ -48,10 +44,11 @@ class NewEpisodesAdapter(
     }
 
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
-        holder.bind(currentList[position], context)
+        holder.bind(currentList[position], holder.itemView.context)
     }
 
-    inner class EpisodeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class EpisodeViewHolder(itemView: NewEpisodesItemBinding) :
+        RecyclerView.ViewHolder(itemView.root) {
         private val channelTitle: TextView = itemView.channelTitleTxt
         private val courseTitle: TextView = itemView.courseTitleTxt
         private val episodeImage: ImageView = itemView.episodePhotoImg

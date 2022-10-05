@@ -1,44 +1,51 @@
 package com.personalgrowth.repository.mainRepository
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.personalgrowth.CoroutineTestRule
 import com.personalgrowth.FakeData
-import com.personalgrowth.TestApp
-import junit.framework.TestCase
+import com.personalgrowth.repository.FakeMainRepository
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.HiltTestApplication
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Before
 import org.junit.Rule
-import org.junit.rules.TestRule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.LooperMode
 import javax.inject.Inject
 
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [25], application = HiltTestApplication::class)
 @ExperimentalCoroutinesApi
-class DefaultMainRepositoryTest : TestCase() {
+@LooperMode(LooperMode.Mode.PAUSED)
+@HiltAndroidTest
+class DefaultMainRepositoryTest {
+
+    @get:Rule
+    val hiltRule = HiltAndroidRule(this)
 
     @Inject
-    lateinit var defaultMainRepository: DefaultMainRepository
+    lateinit var fakeMainRepository: FakeMainRepository
 
-    @get:Rule
-    val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
-
-    @ExperimentalCoroutinesApi
-    @get:Rule
-    var mainCoroutineRule = CoroutineTestRule()
-
-    @ExperimentalCoroutinesApi
-    override fun setUp() {
-        TestApp().testAppComponent.inject(this)
-        super.setUp()
+    @Before
+    fun setUp() {
+        hiltRule.inject()
     }
 
+    @Test
     fun testGetCategories() {
-        defaultMainRepository.getCategories({
+        fakeMainRepository.getCategories({
             assertEquals(FakeData.channelCategoryData.data, it.data)
         }, {
 
         })
     }
 
+    @Test
     fun testGetChannels() {
-        defaultMainRepository.getChannels({
+        fakeMainRepository.getChannels({
             assertEquals(FakeData.channelData.data, it.data)
         }, {
 

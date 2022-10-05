@@ -39,23 +39,23 @@
                     android:layout_gravity="center_horizontal">
 
                     <include
-                        android:id="@+id/episode1"
+                        android:id="@+id/categoryEpisode1"
                         layout="@layout/shimmer_category_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@+id/episode2"
+                        app:layout_constraintEnd_toStartOf="@+id/categoryEpisode2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
-                        android:id="@+id/episode2"
+                        android:id="@+id/categoryEpisode2"
                         layout="@layout/shimmer_category_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/episode1"
+                        app:layout_constraintStart_toEndOf="@+id/categoryEpisode1"
                         app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -78,23 +78,23 @@
                     android:layout_gravity="center_horizontal">
 
                     <include
-                        android:id="@+id/episode1"
+                        android:id="@+id/channelCategoryEpisode1"
                         layout="@layout/shimmer_category_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@+id/episode2"
+                        app:layout_constraintEnd_toStartOf="@+id/channelCategoryEpisode2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
-                        android:id="@+id/episode2"
+                        android:id="@+id/channelCategoryEpisode2"
                         layout="@layout/shimmer_category_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/episode1"
+                        app:layout_constraintStart_toEndOf="@+id/channelCategoryEpisode1"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -116,25 +116,24 @@
                     android:layout_gravity="center_horizontal">
 
                     <include
-                        android:id="@+id/episode1"
+                        android:id="@+id/channelCategory3Episode1"
                         layout="@layout/shimmer_category_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@+id/episode2"
+                        app:layout_constraintEnd_toStartOf="@+id/channelCategory3Episode2"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <include
-                        android:id="@+id/episode2"
+                        android:id="@+id/channelCategory3Episode2"
                         layout="@layout/shimmer_category_item"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/episode1"
+                        app:layout_constraintStart_toEndOf="@+id/channelCategory3Episode1"
                         app:layout_constraintTop_toTopOf="parent" />
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

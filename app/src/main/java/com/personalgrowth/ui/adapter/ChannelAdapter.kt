@@ -2,7 +2,6 @@ package com.personalgrowth.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,13 +13,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.personalgrowth.R
+import com.personalgrowth.databinding.ChannelCourseListBinding
+import com.personalgrowth.databinding.ChannelSeriesListBinding
 import com.personalgrowth.model.ChannelItem
-import kotlinx.android.synthetic.main.channel_course_list.view.*
-import kotlinx.android.synthetic.main.channel_series_list.view.*
 
-class ChannelAdapter(
-    private val context: Context
-) :
+class ChannelAdapter :
     ListAdapter<ChannelItem, RecyclerView.ViewHolder>(ChannelItemDiffCallback()) {
 
     private val channelCourse = 1
@@ -28,7 +25,7 @@ class ChannelAdapter(
 
     class ChannelItemDiffCallback : DiffUtil.ItemCallback<ChannelItem>() {
         override fun areItemsTheSame(oldItem: ChannelItem, newItem: ChannelItem): Boolean =
-            oldItem == newItem
+            oldItem.id == newItem.id
 
         override fun areContentsTheSame(oldItem: ChannelItem, newItem: ChannelItem): Boolean =
             oldItem == newItem
@@ -41,16 +38,16 @@ class ChannelAdapter(
 
         return if (viewType == channelCourse) {
             CourseViewHolder(
-                LayoutInflater.from(context).inflate(
-                    R.layout.channel_course_list,
+                ChannelCourseListBinding.inflate(
+                    LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
             )
         } else {
             SeriesViewHolder(
-                LayoutInflater.from(context).inflate(
-                    R.layout.channel_series_list,
+                ChannelSeriesListBinding.inflate(
+                    LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
@@ -75,12 +72,19 @@ class ChannelAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         when (holder.itemViewType) {
-            channelCourse -> (holder as CourseViewHolder).bind(currentList[position], context)
-            channelSeries -> (holder as SeriesViewHolder).bind(currentList[position], context)
+            channelCourse -> (holder as CourseViewHolder).bind(
+                currentList[position],
+                holder.itemView.context
+            )
+            channelSeries -> (holder as SeriesViewHolder).bind(
+                currentList[position],
+                holder.itemView.context
+            )
         }
     }
 
-    class CourseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class CourseViewHolder(itemView: ChannelCourseListBinding) :
+        RecyclerView.ViewHolder(itemView.root) {
         private val channelTitle: TextView = itemView.channelCourseItemTxt
         private val channelCountTitle: TextView = itemView.channelCourseItemCountTxt
         private val channelCourseImage: ImageView = itemView.channelCoursePhotoImg
@@ -104,13 +108,15 @@ class ChannelAdapter(
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
             channelItem.latestMedia?.let {
-                channelCourseAdapter = ChannelCourseAdapter(context, it)
+                channelCourseAdapter = ChannelCourseAdapter()
                 channelCourseRecyclerView.adapter = channelCourseAdapter
+                channelCourseAdapter.submitList(it)
             }
         }
     }
 
-    class SeriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SeriesViewHolder(itemView: ChannelSeriesListBinding) :
+        RecyclerView.ViewHolder(itemView.root) {
         private val channelTitle: TextView = itemView.channelSeriesItemTxt
         private val channelCountTitle: TextView = itemView.channelItemCountTxt
         private val channelSeriesImage: ImageView = itemView.channelSeriesPhotoImg
@@ -134,7 +140,7 @@ class ChannelAdapter(
                 LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
             channelItem.series?.let {
-                channelSeriesAdapter = ChannelSeriesAdapter(context, it)
+                channelSeriesAdapter = ChannelSeriesAdapter()
                 channelSeriesRecycler.adapter = channelSeriesAdapter
             }
 

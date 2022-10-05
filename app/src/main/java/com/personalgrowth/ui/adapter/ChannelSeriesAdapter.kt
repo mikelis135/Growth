@@ -2,24 +2,29 @@ package com.personalgrowth.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.personalgrowth.R
+import com.personalgrowth.databinding.SeriesItemBinding
 import com.personalgrowth.model.Series
-import kotlinx.android.synthetic.main.series_item.view.*
 import kotlin.math.min
 
-class ChannelSeriesAdapter(
-    private val context: Context,
-    private val channelSeriesList: List<Series>
-) :
-    RecyclerView.Adapter<ChannelSeriesAdapter.SeriesViewHolder>() {
+class ChannelSeriesAdapter :
+    ListAdapter<Series, RecyclerView.ViewHolder>(SeriesDiffCallback()) {
+
+    class SeriesDiffCallback : DiffUtil.ItemCallback<Series>() {
+        override fun areItemsTheSame(oldItem: Series, newItem: Series): Boolean =
+            oldItem.title == newItem.title
+
+        override fun areContentsTheSame(oldItem: Series, newItem: Series): Boolean =
+            oldItem == newItem
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,8 +32,8 @@ class ChannelSeriesAdapter(
     ): SeriesViewHolder {
 
         return SeriesViewHolder(
-            LayoutInflater.from(context).inflate(
-                R.layout.series_item,
+            SeriesItemBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
                 false
             )
@@ -36,14 +41,14 @@ class ChannelSeriesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return min(channelSeriesList.size, 6)
+        return min(currentList.size, 6)
     }
 
-    override fun onBindViewHolder(holder: SeriesViewHolder, position: Int) {
-        holder.bind(channelSeriesList[position], context)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as SeriesViewHolder).bind(currentList[position], holder.itemView.context)
     }
 
-    class SeriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SeriesViewHolder(itemView: SeriesItemBinding) : RecyclerView.ViewHolder(itemView.root) {
         private val channelSeriesTitle: TextView = itemView.channelSeriesMediaTitleTxt
         private val channelSeriesImage: ImageView = itemView.channelSeriesMediaPhotoImg
 
